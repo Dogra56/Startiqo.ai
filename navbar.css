@@ -1,0 +1,190 @@
+/* ================================================
+   STARTIQ.AI — Navbar
+================================================ */
+
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: var(--z-nav);
+  height: var(--nav-height);
+  padding: 0 var(--gutter);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  transition:
+    background 0.5s var(--ease-out),
+    backdrop-filter 0.5s,
+    border-color 0.5s;
+  border-bottom: 1px solid transparent;
+}
+
+nav.sticky {
+  background: rgba(4, 4, 10, 0.92);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-color: var(--mist-line);
+}
+
+/* ── Logo ────────────────────────────────────── */
+.nav-logo {
+  font-family: var(--font-mono);
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 1px;
+  flex: none;
+}
+.nav-logo-text  { color: var(--white); }
+.nav-logo-dot   { color: var(--rose); font-size: 1.5rem; line-height: 1; }
+.nav-logo-ai    { color: var(--rose); }
+
+/* ── Links ───────────────────────────────────── */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 36px;
+}
+
+.nav-links a {
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 300;
+  color: var(--silver);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  position: relative;
+  transition: color var(--trans-fast);
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -3px; left: 0; right: 0;
+  height: 1px;
+  background: var(--rose);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s var(--ease-out);
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--white);
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* ── CTA Button ──────────────────────────────── */
+.nav-cta {
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--white);
+  text-decoration: none;
+  border: 1px solid var(--rose);
+  padding: 10px 24px;
+  border-radius: var(--radius-sm);
+  position: relative;
+  overflow: hidden;
+  transition: color var(--trans-fast);
+  flex: none;
+}
+
+.nav-cta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--rose);
+  transform: translateX(-101%);
+  transition: transform 0.3s var(--ease-out);
+}
+
+.nav-cta:hover::before { transform: translateX(0); }
+.nav-cta span { position: relative; z-index: 1; }
+
+/* ── Hamburger ───────────────────────────────── */
+.nav-ham {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: none;
+  padding: 4px;
+  z-index: 1;
+}
+
+.nav-ham span {
+  display: block;
+  width: 22px;
+  height: 1px;
+  background: var(--white);
+  transition: transform 0.3s var(--ease-out), opacity 0.3s;
+}
+
+.nav-ham.open span:nth-child(1) { transform: rotate(45deg) translate(4px, 4px); }
+.nav-ham.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.nav-ham.open span:nth-child(3) { transform: rotate(-45deg) translate(4px, -4px); }
+
+/* ── Mobile Menu ─────────────────────────────── */
+.nav-mobile {
+  display: none;
+  position: fixed;
+  top: var(--nav-height);
+  left: 0; right: 0;
+  background: rgba(4, 4, 10, 0.98);
+  backdrop-filter: blur(24px);
+  border-bottom: 1px solid var(--mist-line);
+  padding: 28px var(--gutter);
+  z-index: calc(var(--z-nav) - 1);
+  flex-direction: column;
+  gap: 20px;
+}
+
+.nav-mobile.open { display: flex; }
+
+.nav-mobile a {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 300;
+  color: var(--silver);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--mist-line);
+  transition: color var(--trans-fast);
+}
+
+.nav-mobile a:hover { color: var(--rose); }
+
+.nav-mobile .nav-cta-mobile {
+  margin-top: 8px;
+  text-align: center;
+  background: var(--rose);
+  color: var(--white);
+  padding: 14px;
+  font-weight: 500;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  border: none;
+  border-bottom: none;
+}
+
+/* ── Responsive ──────────────────────────────── */
+@media (max-width: 1024px) {
+  .nav-links { gap: 24px; }
+}
+
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .nav-cta   { display: none; }
+  .nav-ham   { display: flex; }
+}

@@ -1,0 +1,224 @@
+/* ================================================
+   STARTIQ.AI — Animations & Reveal System
+================================================ */
+
+/* ── PAGE LOAD ANIMATIONS ───────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(32px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes fadeLeft {
+  from { opacity: 0; transform: translateX(40px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeRight {
+  from { opacity: 0; transform: translateX(-40px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.92); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+/* ── HERO SPECIFIC ──────────────────────────── */
+@keyframes heroTag {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── LOOPING ANIMATIONS ─────────────────────── */
+
+/* Pulse for live indicators */
+@keyframes pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(255, 45, 107, 0.6);
+    transform: scale(1);
+  }
+  70% {
+    box-shadow: 0 0 0 10px transparent;
+    transform: scale(0.9);
+  }
+}
+
+/* Breathing glow */
+@keyframes breathe {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.6; }
+  50%       { transform: translate(-50%, -50%) scale(1.15); opacity: 1; }
+}
+
+/* Horizontal scan line */
+@keyframes scan {
+  0%, 100% { left: 15%; opacity: 0; }
+  10%       { opacity: 0.18; }
+  90%       { opacity: 0.18; }
+  100%      { left: 82%; }
+}
+
+/* Ticker scroll */
+@keyframes ticker {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Dot throb */
+@keyframes throb {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255, 45, 107, 0.7); }
+  70%       { box-shadow: 0 0 0 9px transparent; }
+}
+
+/* Border progress reveal */
+@keyframes borderReveal {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+/* Spin slow */
+@keyframes spinSlow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* Float up/down */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-10px); }
+}
+
+/* ── SCROLL REVEAL SYSTEM ───────────────────── */
+
+/* Base hidden state */
+.rv {
+  opacity: 0;
+  transform: translateY(38px);
+  transition:
+    opacity  var(--trans-reveal),
+    transform var(--trans-reveal);
+}
+
+/* Revealed state */
+.rv.in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Directional variants */
+.rv.from-left  { transform: translateX(-38px); }
+.rv.from-right { transform: translateX(38px); }
+.rv.from-scale { transform: scale(0.94); }
+
+.rv.from-left.in,
+.rv.from-right.in,
+.rv.from-scale.in {
+  transform: translateX(0) scale(1);
+}
+
+/* Stagger delays */
+.d1 { transition-delay: 0.08s; }
+.d2 { transition-delay: 0.16s; }
+.d3 { transition-delay: 0.24s; }
+.d4 { transition-delay: 0.32s; }
+.d5 { transition-delay: 0.40s; }
+.d6 { transition-delay: 0.48s; }
+.d7 { transition-delay: 0.56s; }
+
+/* ── HOVER EFFECTS ──────────────────────────── */
+
+/* Card lift */
+.lift {
+  transition: transform var(--trans-base), box-shadow var(--trans-base);
+}
+.lift:hover {
+  transform: translateY(-6px);
+}
+
+/* Underline reveal */
+.underline-reveal {
+  position: relative;
+}
+.underline-reveal::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0; right: 0;
+  height: 1px;
+  background: var(--rose);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform var(--trans-base);
+}
+.underline-reveal:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* Top border reveal */
+.border-top-reveal {
+  position: relative;
+}
+.border-top-reveal::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--rose);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s var(--ease-out);
+}
+.border-top-reveal:hover::before {
+  transform: scaleX(1);
+}
+
+/* ── LOADER ─────────────────────────────────── */
+#page-loader {
+  position: fixed;
+  inset: 0;
+  background: var(--ink);
+  z-index: 99998;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 20px;
+  transition: opacity 0.6s var(--ease-out), visibility 0.6s;
+}
+#page-loader.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+.loader-logo {
+  font-family: var(--font-mono);
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: var(--white);
+}
+.loader-logo span { color: var(--rose); }
+.loader-bar {
+  width: 120px;
+  height: 1px;
+  background: var(--mist-line);
+  position: relative;
+  overflow: hidden;
+}
+.loader-bar::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%; bottom: 0;
+  width: 100%;
+  background: var(--rose);
+  animation: loaderFill 1.2s var(--ease-out) forwards;
+}
+@keyframes loaderFill {
+  from { left: -100%; }
+  to   { left: 0; }
+}

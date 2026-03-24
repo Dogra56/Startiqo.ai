@@ -1,0 +1,205 @@
+/* ================================================
+   STARTIQ.AI — Global Reset & Base Styles
+================================================ */
+
+/* ── Reset ──────────────────────────────────── */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  background: var(--ink);
+  color: var(--white);
+  font-family: var(--font-body);
+  font-weight: 300;
+  overflow-x: hidden;
+  cursor: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Scrollbar ──────────────────────────────── */
+::-webkit-scrollbar         { width: 2px; }
+::-webkit-scrollbar-track   { background: transparent; }
+::-webkit-scrollbar-thumb   { background: var(--rose); border-radius: 1px; }
+
+/* ── Selection ──────────────────────────────── */
+::selection {
+  background: var(--rose);
+  color: var(--white);
+}
+
+/* ── Links ──────────────────────────────────── */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* ── Images ─────────────────────────────────── */
+img, video {
+  display: block;
+  max-width: 100%;
+}
+
+/* ── Lists ──────────────────────────────────── */
+ul, ol { list-style: none; }
+
+/* ── Buttons ────────────────────────────────── */
+button {
+  background: none;
+  border: none;
+  cursor: none;
+  font-family: var(--font-body);
+}
+
+/* ── Canvas ─────────────────────────────────── */
+canvas {
+  display: block;
+}
+
+/* ── GRAIN OVERLAY ──────────────────────────── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-cursor);
+  pointer-events: none;
+  opacity: 0.030;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+}
+
+/* ── LAYOUT ─────────────────────────────────── */
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+  position: relative;
+  z-index: var(--z-content);
+}
+
+section {
+  position: relative;
+  overflow: hidden;
+}
+
+/* ── TYPOGRAPHY ─────────────────────────────── */
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 900;
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+}
+
+p {
+  line-height: 1.85;
+}
+
+/* ── SECTION EYEBROW ────────────────────────── */
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  color: var(--rose);
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+.eyebrow-dash {
+  width: 40px;
+  height: 1px;
+  background: var(--rose);
+  flex: none;
+}
+
+/* ── SECTION HEADING ────────────────────────── */
+.section-h2 {
+  font-size: clamp(2.4rem, 4.5vw, 4.2rem);
+  margin-bottom: 24px;
+}
+.section-h2 em   { font-style: italic; color: var(--rose); }
+.section-h2 .ghost {
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.18);
+  color: transparent;
+}
+
+/* ── SECTION DESCRIPTION ────────────────────── */
+.section-desc {
+  font-size: 0.97rem;
+  color: var(--silver);
+  max-width: 580px;
+  line-height: 1.9;
+  margin-bottom: var(--space-8);
+}
+
+/* ── BUTTONS ────────────────────────────────── */
+.btn-rose {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+  background: var(--rose);
+  color: var(--white);
+  padding: 16px 38px;
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.85rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  clip-path: var(--clip-btn);
+  transition: box-shadow var(--trans-base);
+}
+.btn-rose:hover {
+  box-shadow: var(--glow-rose);
+}
+
+.btn-ghost {
+  display: inline-block;
+  background: transparent;
+  color: var(--white);
+  padding: 15px 38px;
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 0.85rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  clip-path: var(--clip-btn);
+  transition: border-color var(--trans-base), background var(--trans-base);
+}
+.btn-ghost:hover {
+  border-color: var(--rose);
+  background: var(--rose-fade);
+}
+
+/* ── DIVIDER LINE ────────────────────────────── */
+.divider {
+  width: 100%;
+  height: 1px;
+  background: var(--mist-line);
+}
+.divider-rose {
+  background: linear-gradient(90deg, transparent, var(--rose), transparent);
+  opacity: 0.15;
+}
+
+/* ── RESPONSIVE ─────────────────────────────── */
+@media (max-width: 1024px) {
+  :root { --gutter: 40px; }
+}
+@media (max-width: 768px) {
+  :root {
+    --gutter: 24px;
+    --space-11: 100px;
+    --space-10: 80px;
+  }
+}

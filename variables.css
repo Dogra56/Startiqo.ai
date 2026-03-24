@@ -1,0 +1,82 @@
+/* ================================================
+   STARTIQ.AI — Design Tokens & CSS Variables
+   All colour, type, spacing, and animation values
+   live here. Never hard-code values elsewhere.
+================================================ */
+
+:root {
+
+  /* ── Colours ───────────────────────────────── */
+  --ink:          #04040a;
+  --ink-2:        #08080f;
+  --ink-3:        #0d0d18;
+  --ink-4:        #111120;
+
+  --card:         #0f0f1c;
+  --card-2:       #0c0c16;
+  --card-hover:   rgba(255, 45, 107, 0.025);
+
+  --rose:         #ff2d6b;
+  --rose-2:       #ff6b95;
+  --rose-3:       #ffadc5;
+  --rose-fade:    rgba(255, 45, 107, 0.08);
+  --rose-glow:    rgba(255, 45, 107, 0.22);
+  --rose-border:  rgba(255, 45, 107, 0.18);
+
+  --white:        #ffffff;
+  --silver:       #a8a8b8;
+  --dim:          #5a5a72;
+  --mist:         rgba(255, 255, 255, 0.06);
+  --mist-line:    rgba(255, 255, 255, 0.04);
+
+  /* ── Typography ────────────────────────────── */
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-mono:    'Orbitron', monospace;
+  --font-body:    'Outfit', sans-serif;
+
+  /* ── Spacing Scale ─────────────────────────── */
+  --space-1:   4px;
+  --space-2:   8px;
+  --space-3:   12px;
+  --space-4:   16px;
+  --space-5:   24px;
+  --space-6:   32px;
+  --space-7:   48px;
+  --space-8:   64px;
+  --space-9:   80px;
+  --space-10:  120px;
+  --space-11:  160px;
+
+  /* ── Layout ────────────────────────────────── */
+  --max-width:   1320px;
+  --nav-height:  72px;
+  --gutter:      56px;
+
+  /* ── Border Radius ─────────────────────────── */
+  --radius-sm:   2px;
+  --radius-md:   4px;
+  --radius-pill: 50px;
+
+  /* ── Clip Paths ────────────────────────────── */
+  --clip-btn:    polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+  --clip-card:   polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 0 100%);
+
+  /* ── Transitions ───────────────────────────── */
+  --ease-out:    cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --trans-fast:  0.2s var(--ease-out);
+  --trans-base:  0.35s var(--ease-out);
+  --trans-slow:  0.65s var(--ease-out);
+  --trans-reveal: 0.9s var(--ease-out);
+
+  /* ── Shadows & Glows ───────────────────────── */
+  --glow-rose:   0 0 60px rgba(255, 45, 107, 0.35);
+  --glow-rose-lg:0 0 100px rgba(255, 45, 107, 0.25);
+
+  /* ── Z-index scale ─────────────────────────── */
+  --z-base:      1;
+  --z-content:   2;
+  --z-overlay:   10;
+  --z-nav:       1000;
+  --z-cursor:    99999;
+}

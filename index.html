@@ -1,0 +1,2714 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="StartIQ.ai — The world's first complete AI-powered Startup Operating System. 6 roles, 36 features, from first idea to final outcome." />
+  <meta name="keywords" content="startup intelligence, AI startup platform, founder tools, HR automation, idea validation, startup OS" />
+  <meta property="og:title"       content="StartIQ.ai — AI-Powered Startup Intelligence Platform" />
+  <meta property="og:description" content="6 roles. 36 features. One operating system for every founder." />
+  <meta property="og:type"        content="website" />
+  <title>StartIQ.ai — AI-Powered Startup Intelligence Platform</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700;1,800&family=Outfit:wght@200;300;400;500;600&family=Orbitron:wght@600;700;900&display=swap" rel="stylesheet" />
+
+  <!-- CSS — load order matters -->
+  
+  
+  
+  
+  
+  
+<style>
+/* ================================================
+   STARTIQ.AI — Design Tokens & CSS Variables
+   All colour, type, spacing, and animation values
+   live here. Never hard-code values elsewhere.
+================================================ */
+
+:root {
+
+  /* ── Colours ───────────────────────────────── */
+  --ink:          #04040a;
+  --ink-2:        #08080f;
+  --ink-3:        #0d0d18;
+  --ink-4:        #111120;
+
+  --card:         #0f0f1c;
+  --card-2:       #0c0c16;
+  --card-hover:   rgba(255, 45, 107, 0.025);
+
+  --rose:         #ff2d6b;
+  --rose-2:       #ff6b95;
+  --rose-3:       #ffadc5;
+  --rose-fade:    rgba(255, 45, 107, 0.08);
+  --rose-glow:    rgba(255, 45, 107, 0.22);
+  --rose-border:  rgba(255, 45, 107, 0.18);
+
+  --white:        #ffffff;
+  --silver:       #a8a8b8;
+  --dim:          #5a5a72;
+  --mist:         rgba(255, 255, 255, 0.06);
+  --mist-line:    rgba(255, 255, 255, 0.04);
+
+  /* ── Typography ────────────────────────────── */
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-mono:    'Orbitron', monospace;
+  --font-body:    'Outfit', sans-serif;
+
+  /* ── Spacing Scale ─────────────────────────── */
+  --space-1:   4px;
+  --space-2:   8px;
+  --space-3:   12px;
+  --space-4:   16px;
+  --space-5:   24px;
+  --space-6:   32px;
+  --space-7:   48px;
+  --space-8:   64px;
+  --space-9:   80px;
+  --space-10:  120px;
+  --space-11:  160px;
+
+  /* ── Layout ────────────────────────────────── */
+  --max-width:   1320px;
+  --nav-height:  72px;
+  --gutter:      56px;
+
+  /* ── Border Radius ─────────────────────────── */
+  --radius-sm:   2px;
+  --radius-md:   4px;
+  --radius-pill: 50px;
+
+  /* ── Clip Paths ────────────────────────────── */
+  --clip-btn:    polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+  --clip-card:   polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 0 100%);
+
+  /* ── Transitions ───────────────────────────── */
+  --ease-out:    cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --trans-fast:  0.2s var(--ease-out);
+  --trans-base:  0.35s var(--ease-out);
+  --trans-slow:  0.65s var(--ease-out);
+  --trans-reveal: 0.9s var(--ease-out);
+
+  /* ── Shadows & Glows ───────────────────────── */
+  --glow-rose:   0 0 60px rgba(255, 45, 107, 0.35);
+  --glow-rose-lg:0 0 100px rgba(255, 45, 107, 0.25);
+
+  /* ── Z-index scale ─────────────────────────── */
+  --z-base:      1;
+  --z-content:   2;
+  --z-overlay:   10;
+  --z-nav:       1000;
+  --z-cursor:    99999;
+}
+
+/* ================================================
+   STARTIQ.AI — Global Reset & Base Styles
+================================================ */
+
+/* ── Reset ──────────────────────────────────── */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  background: var(--ink);
+  color: var(--white);
+  font-family: var(--font-body);
+  font-weight: 300;
+  overflow-x: hidden;
+  cursor: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Scrollbar ──────────────────────────────── */
+::-webkit-scrollbar         { width: 2px; }
+::-webkit-scrollbar-track   { background: transparent; }
+::-webkit-scrollbar-thumb   { background: var(--rose); border-radius: 1px; }
+
+/* ── Selection ──────────────────────────────── */
+::selection {
+  background: var(--rose);
+  color: var(--white);
+}
+
+/* ── Links ──────────────────────────────────── */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* ── Images ─────────────────────────────────── */
+img, video {
+  display: block;
+  max-width: 100%;
+}
+
+/* ── Lists ──────────────────────────────────── */
+ul, ol { list-style: none; }
+
+/* ── Buttons ────────────────────────────────── */
+button {
+  background: none;
+  border: none;
+  cursor: none;
+  font-family: var(--font-body);
+}
+
+/* ── Canvas ─────────────────────────────────── */
+canvas {
+  display: block;
+}
+
+/* ── GRAIN OVERLAY ──────────────────────────── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-cursor);
+  pointer-events: none;
+  opacity: 0.030;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+}
+
+/* ── LAYOUT ─────────────────────────────────── */
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+  position: relative;
+  z-index: var(--z-content);
+}
+
+section {
+  position: relative;
+  overflow: hidden;
+}
+
+/* ── TYPOGRAPHY ─────────────────────────────── */
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 900;
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+}
+
+p {
+  line-height: 1.85;
+}
+
+/* ── SECTION EYEBROW ────────────────────────── */
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  color: var(--rose);
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+.eyebrow-dash {
+  width: 40px;
+  height: 1px;
+  background: var(--rose);
+  flex: none;
+}
+
+/* ── SECTION HEADING ────────────────────────── */
+.section-h2 {
+  font-size: clamp(2.4rem, 4.5vw, 4.2rem);
+  margin-bottom: 24px;
+}
+.section-h2 em   { font-style: italic; color: var(--rose); }
+.section-h2 .ghost {
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.18);
+  color: transparent;
+}
+
+/* ── SECTION DESCRIPTION ────────────────────── */
+.section-desc {
+  font-size: 0.97rem;
+  color: var(--silver);
+  max-width: 580px;
+  line-height: 1.9;
+  margin-bottom: var(--space-8);
+}
+
+/* ── BUTTONS ────────────────────────────────── */
+.btn-rose {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+  background: var(--rose);
+  color: var(--white);
+  padding: 16px 38px;
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.85rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  clip-path: var(--clip-btn);
+  transition: box-shadow var(--trans-base);
+}
+.btn-rose:hover {
+  box-shadow: var(--glow-rose);
+}
+
+.btn-ghost {
+  display: inline-block;
+  background: transparent;
+  color: var(--white);
+  padding: 15px 38px;
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 0.85rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  clip-path: var(--clip-btn);
+  transition: border-color var(--trans-base), background var(--trans-base);
+}
+.btn-ghost:hover {
+  border-color: var(--rose);
+  background: var(--rose-fade);
+}
+
+/* ── DIVIDER LINE ────────────────────────────── */
+.divider {
+  width: 100%;
+  height: 1px;
+  background: var(--mist-line);
+}
+.divider-rose {
+  background: linear-gradient(90deg, transparent, var(--rose), transparent);
+  opacity: 0.15;
+}
+
+/* ── RESPONSIVE ─────────────────────────────── */
+@media (max-width: 1024px) {
+  :root { --gutter: 40px; }
+}
+@media (max-width: 768px) {
+  :root {
+    --gutter: 24px;
+    --space-11: 100px;
+    --space-10: 80px;
+  }
+}
+
+/* ================================================
+   STARTIQ.AI — Animations & Reveal System
+================================================ */
+
+/* ── PAGE LOAD ANIMATIONS ───────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(32px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes fadeLeft {
+  from { opacity: 0; transform: translateX(40px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeRight {
+  from { opacity: 0; transform: translateX(-40px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.92); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+/* ── HERO SPECIFIC ──────────────────────────── */
+@keyframes heroTag {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── LOOPING ANIMATIONS ─────────────────────── */
+
+/* Pulse for live indicators */
+@keyframes pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(255, 45, 107, 0.6);
+    transform: scale(1);
+  }
+  70% {
+    box-shadow: 0 0 0 10px transparent;
+    transform: scale(0.9);
+  }
+}
+
+/* Breathing glow */
+@keyframes breathe {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.6; }
+  50%       { transform: translate(-50%, -50%) scale(1.15); opacity: 1; }
+}
+
+/* Horizontal scan line */
+@keyframes scan {
+  0%, 100% { left: 15%; opacity: 0; }
+  10%       { opacity: 0.18; }
+  90%       { opacity: 0.18; }
+  100%      { left: 82%; }
+}
+
+/* Ticker scroll */
+@keyframes ticker {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Dot throb */
+@keyframes throb {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255, 45, 107, 0.7); }
+  70%       { box-shadow: 0 0 0 9px transparent; }
+}
+
+/* Border progress reveal */
+@keyframes borderReveal {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+/* Spin slow */
+@keyframes spinSlow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* Float up/down */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-10px); }
+}
+
+/* ── SCROLL REVEAL SYSTEM ───────────────────── */
+
+/* Base hidden state */
+.rv {
+  opacity: 0;
+  transform: translateY(38px);
+  transition:
+    opacity  var(--trans-reveal),
+    transform var(--trans-reveal);
+}
+
+/* Revealed state */
+.rv.in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Directional variants */
+.rv.from-left  { transform: translateX(-38px); }
+.rv.from-right { transform: translateX(38px); }
+.rv.from-scale { transform: scale(0.94); }
+
+.rv.from-left.in,
+.rv.from-right.in,
+.rv.from-scale.in {
+  transform: translateX(0) scale(1);
+}
+
+/* Stagger delays */
+.d1 { transition-delay: 0.08s; }
+.d2 { transition-delay: 0.16s; }
+.d3 { transition-delay: 0.24s; }
+.d4 { transition-delay: 0.32s; }
+.d5 { transition-delay: 0.40s; }
+.d6 { transition-delay: 0.48s; }
+.d7 { transition-delay: 0.56s; }
+
+/* ── HOVER EFFECTS ──────────────────────────── */
+
+/* Card lift */
+.lift {
+  transition: transform var(--trans-base), box-shadow var(--trans-base);
+}
+.lift:hover {
+  transform: translateY(-6px);
+}
+
+/* Underline reveal */
+.underline-reveal {
+  position: relative;
+}
+.underline-reveal::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0; right: 0;
+  height: 1px;
+  background: var(--rose);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform var(--trans-base);
+}
+.underline-reveal:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* Top border reveal */
+.border-top-reveal {
+  position: relative;
+}
+.border-top-reveal::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--rose);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s var(--ease-out);
+}
+.border-top-reveal:hover::before {
+  transform: scaleX(1);
+}
+
+/* ── LOADER ─────────────────────────────────── */
+#page-loader {
+  position: fixed;
+  inset: 0;
+  background: var(--ink);
+  z-index: 99998;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 20px;
+  transition: opacity 0.6s var(--ease-out), visibility 0.6s;
+}
+#page-loader.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+.loader-logo {
+  font-family: var(--font-mono);
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: var(--white);
+}
+.loader-logo span { color: var(--rose); }
+.loader-bar {
+  width: 120px;
+  height: 1px;
+  background: var(--mist-line);
+  position: relative;
+  overflow: hidden;
+}
+.loader-bar::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%; bottom: 0;
+  width: 100%;
+  background: var(--rose);
+  animation: loaderFill 1.2s var(--ease-out) forwards;
+}
+@keyframes loaderFill {
+  from { left: -100%; }
+  to   { left: 0; }
+}
+
+/* ================================================
+   STARTIQ.AI — Navbar
+================================================ */
+
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: var(--z-nav);
+  height: var(--nav-height);
+  padding: 0 var(--gutter);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  transition:
+    background 0.5s var(--ease-out),
+    backdrop-filter 0.5s,
+    border-color 0.5s;
+  border-bottom: 1px solid transparent;
+}
+
+nav.sticky {
+  background: rgba(4, 4, 10, 0.92);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-color: var(--mist-line);
+}
+
+/* ── Logo ────────────────────────────────────── */
+.nav-logo {
+  font-family: var(--font-mono);
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 1px;
+  flex: none;
+}
+.nav-logo-text  { color: var(--white); }
+.nav-logo-dot   { color: var(--rose); font-size: 1.5rem; line-height: 1; }
+.nav-logo-ai    { color: var(--rose); }
+
+/* ── Links ───────────────────────────────────── */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 36px;
+}
+
+.nav-links a {
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 300;
+  color: var(--silver);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  position: relative;
+  transition: color var(--trans-fast);
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -3px; left: 0; right: 0;
+  height: 1px;
+  background: var(--rose);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s var(--ease-out);
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--white);
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* ── CTA Button ──────────────────────────────── */
+.nav-cta {
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--white);
+  text-decoration: none;
+  border: 1px solid var(--rose);
+  padding: 10px 24px;
+  border-radius: var(--radius-sm);
+  position: relative;
+  overflow: hidden;
+  transition: color var(--trans-fast);
+  flex: none;
+}
+
+.nav-cta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--rose);
+  transform: translateX(-101%);
+  transition: transform 0.3s var(--ease-out);
+}
+
+.nav-cta:hover::before { transform: translateX(0); }
+.nav-cta span { position: relative; z-index: 1; }
+
+/* ── Hamburger ───────────────────────────────── */
+.nav-ham {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: none;
+  padding: 4px;
+  z-index: 1;
+}
+
+.nav-ham span {
+  display: block;
+  width: 22px;
+  height: 1px;
+  background: var(--white);
+  transition: transform 0.3s var(--ease-out), opacity 0.3s;
+}
+
+.nav-ham.open span:nth-child(1) { transform: rotate(45deg) translate(4px, 4px); }
+.nav-ham.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.nav-ham.open span:nth-child(3) { transform: rotate(-45deg) translate(4px, -4px); }
+
+/* ── Mobile Menu ─────────────────────────────── */
+.nav-mobile {
+  display: none;
+  position: fixed;
+  top: var(--nav-height);
+  left: 0; right: 0;
+  background: rgba(4, 4, 10, 0.98);
+  backdrop-filter: blur(24px);
+  border-bottom: 1px solid var(--mist-line);
+  padding: 28px var(--gutter);
+  z-index: calc(var(--z-nav) - 1);
+  flex-direction: column;
+  gap: 20px;
+}
+
+.nav-mobile.open { display: flex; }
+
+.nav-mobile a {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 300;
+  color: var(--silver);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--mist-line);
+  transition: color var(--trans-fast);
+}
+
+.nav-mobile a:hover { color: var(--rose); }
+
+.nav-mobile .nav-cta-mobile {
+  margin-top: 8px;
+  text-align: center;
+  background: var(--rose);
+  color: var(--white);
+  padding: 14px;
+  font-weight: 500;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  border: none;
+  border-bottom: none;
+}
+
+/* ── Responsive ──────────────────────────────── */
+@media (max-width: 1024px) {
+  .nav-links { gap: 24px; }
+}
+
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .nav-cta   { display: none; }
+  .nav-ham   { display: flex; }
+}
+
+/* ================================================
+   STARTIQ.AI — Reusable Components
+================================================ */
+
+/* ── CURSOR ─────────────────────────────────── */
+#cursor-outer {
+  position: fixed;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--rose);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: var(--z-cursor);
+  transform: translate(-50%, -50%);
+  transition:
+    width  0.35s var(--ease-out),
+    height 0.35s var(--ease-out),
+    border-color 0.3s,
+    background 0.3s;
+  mix-blend-mode: exclusion;
+}
+#cursor-inner {
+  position: fixed;
+  width: 6px;
+  height: 6px;
+  background: var(--rose);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: calc(var(--z-cursor) + 1);
+  transform: translate(-50%, -50%);
+}
+body.hovering #cursor-outer {
+  width: 72px;
+  height: 72px;
+  background: rgba(255, 45, 107, 0.06);
+}
+
+/* ── TICKER ─────────────────────────────────── */
+.ticker {
+  position: relative;
+  z-index: var(--z-overlay);
+  overflow: hidden;
+  padding: 17px 0;
+  background: var(--ink-2);
+  border-top: 1px solid var(--mist-line);
+  border-bottom: 1px solid var(--mist-line);
+}
+.ticker-track {
+  display: flex;
+  white-space: nowrap;
+  animation: ticker 35s linear infinite;
+}
+.ticker-track span {
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--dim);
+  padding: 0 38px;
+}
+.ticker-track span.accent { color: var(--rose); }
+
+/* ── STAT BOX ────────────────────────────────── */
+.stat-box {
+  background: var(--ink-2);
+  padding: 36px 28px;
+  border: 1px solid var(--mist-line);
+  position: relative;
+  overflow: hidden;
+  transition: border-color var(--trans-base);
+}
+.stat-box::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--rose);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s var(--ease-out);
+}
+.stat-box:hover { border-color: var(--rose-border); }
+.stat-box:hover::before { transform: scaleX(1); }
+
+.stat-val {
+  font-family: var(--font-mono);
+  font-size: 2.3rem;
+  font-weight: 700;
+  color: var(--rose);
+  letter-spacing: -0.02em;
+  display: block;
+  margin-bottom: 6px;
+  line-height: 1.1;
+}
+.stat-label {
+  font-size: 0.7rem;
+  font-weight: 300;
+  color: var(--dim);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* ── FEATURE CARD ────────────────────────────── */
+.feat-card {
+  background: var(--card);
+  border: 1px solid var(--mist-line);
+  padding: 40px 36px;
+  position: relative;
+  overflow: hidden;
+  transition:
+    background var(--trans-base),
+    border-color var(--trans-base),
+    transform 0.4s var(--ease-out);
+}
+.feat-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255, 45, 107, 0.05) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+.feat-card:hover {
+  background: var(--card-hover);
+  border-color: var(--rose-border);
+  transform: translateY(-5px);
+}
+.feat-card:hover::before { opacity: 1; }
+
+.feat-tag {
+  font-family: var(--font-mono);
+  font-size: 0.56rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: var(--rose);
+  text-transform: uppercase;
+  margin-bottom: 18px;
+  display: block;
+}
+.feat-icon {
+  width: 48px;
+  height: 48px;
+  border: 1px solid rgba(255, 45, 107, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  margin-bottom: 18px;
+  background: rgba(255, 45, 107, 0.04);
+  clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 0 100%);
+}
+.feat-name {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--white);
+  margin-bottom: 12px;
+  line-height: 1.25;
+}
+.feat-desc {
+  font-size: 0.87rem;
+  font-weight: 300;
+  color: var(--silver);
+  line-height: 1.8;
+  margin-bottom: 18px;
+}
+.feat-problem {
+  padding-top: 18px;
+  border-top: 1px solid var(--mist-line);
+}
+.feat-problem-label {
+  font-family: var(--font-mono);
+  font-size: 0.54rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: rgba(255, 45, 107, 0.65);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+  display: block;
+}
+.feat-problem p {
+  font-size: 0.8rem;
+  font-weight: 300;
+  color: var(--dim);
+  line-height: 1.65;
+  font-style: italic;
+}
+
+/* ── FEATURES GRID ───────────────────────────── */
+.feats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 2px;
+}
+
+/* ── PROBLEM CELL ────────────────────────────── */
+.problem-cell {
+  background: var(--ink);
+  padding: 52px 44px;
+  border: 1px solid var(--mist-line);
+  position: relative;
+  overflow: hidden;
+  transition: background var(--trans-base);
+}
+.problem-cell:hover { background: rgba(255, 45, 107, 0.02); }
+
+.problem-cell::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, var(--rose), transparent);
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+.problem-cell:hover::after { opacity: 0.4; }
+
+.prob-badge {
+  position: absolute;
+  top: 20px; right: 20px;
+  font-family: var(--font-mono);
+  font-size: 0.54rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--rose);
+  border: 1px solid rgba(255, 45, 107, 0.22);
+  padding: 4px 10px;
+  background: rgba(255, 45, 107, 0.05);
+}
+.prob-num {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: var(--rose);
+  margin-bottom: 18px;
+  display: block;
+}
+.prob-h {
+  font-family: var(--font-display);
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: var(--white);
+  margin-bottom: 12px;
+  line-height: 1.25;
+}
+.prob-p {
+  font-size: 0.88rem;
+  font-weight: 300;
+  color: var(--silver);
+  line-height: 1.8;
+}
+
+/* ── ROLE TABS ───────────────────────────────── */
+.roles-nav {
+  display: flex;
+  border: 1px solid var(--mist-line);
+  margin-bottom: 56px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.roles-nav::-webkit-scrollbar { display: none; }
+
+.role-tab {
+  flex: 1;
+  min-width: 140px;
+  padding: 22px 18px;
+  text-align: center;
+  border-right: 1px solid var(--mist-line);
+  position: relative;
+  overflow: hidden;
+  cursor: none;
+  transition: background var(--trans-base);
+}
+.role-tab:last-child { border-right: none; }
+
+.role-tab::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--rose);
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.3s var(--ease-out);
+}
+.role-tab:hover,
+.role-tab.active { background: rgba(255, 45, 107, 0.04); }
+.role-tab:hover::after,
+.role-tab.active::after { transform: scaleX(1); }
+
+.rt-num {
+  font-family: var(--font-mono);
+  font-size: 0.54rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: var(--rose);
+  display: block;
+  margin-bottom: 5px;
+}
+.rt-label {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 300;
+  color: var(--silver);
+  transition: color var(--trans-fast);
+  line-height: 1.3;
+}
+.role-tab:hover .rt-label,
+.role-tab.active .rt-label { color: var(--white); }
+
+/* ── ROLE PANEL ──────────────────────────────── */
+.role-panel { display: none; }
+.role-panel.active { display: block; }
+
+.role-panel-header {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 48px;
+  align-items: start;
+  margin-bottom: 56px;
+  padding-bottom: 48px;
+  border-bottom: 1px solid var(--mist-line);
+}
+
+.role-big-num {
+  font-family: var(--font-display);
+  font-size: 9rem;
+  font-weight: 900;
+  line-height: 0.85;
+  letter-spacing: -0.04em;
+  color: rgba(255, 45, 107, 0.07);
+  user-select: none;
+}
+
+.role-panel-title {
+  font-size: clamp(2.2rem, 4vw, 3.8rem);
+  color: var(--white);
+  margin-bottom: 14px;
+}
+.role-panel-title em { font-style: italic; color: var(--rose); }
+
+.role-panel-sub {
+  font-size: 0.97rem;
+  font-weight: 300;
+  color: var(--silver);
+  line-height: 1.85;
+  max-width: 580px;
+}
+
+/* ── INSIGHT CARD ────────────────────────────── */
+.insight-card {
+  background: var(--card);
+  border: 1px solid var(--mist-line);
+  overflow: hidden;
+  transition:
+    border-color var(--trans-base),
+    transform 0.4s var(--ease-out);
+  cursor: none;
+}
+.insight-card:hover {
+  border-color: rgba(255, 45, 107, 0.22);
+  transform: translateY(-8px);
+}
+
+.insight-thumb {
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  border-bottom: 1px solid var(--mist-line);
+  background: linear-gradient(135deg, rgba(255, 45, 107, 0.07), rgba(4, 4, 10, 0.4));
+  position: relative;
+}
+.insight-thumb::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 40%, rgba(4, 4, 10, 0.6));
+}
+
+.insight-body { padding: 28px 30px; }
+
+.insight-cat {
+  font-family: var(--font-mono);
+  font-size: 0.56rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: var(--rose);
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  display: block;
+}
+.insight-title {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--white);
+  margin-bottom: 10px;
+  line-height: 1.35;
+}
+.insight-excerpt {
+  font-size: 0.84rem;
+  font-weight: 300;
+  color: var(--silver);
+  line-height: 1.8;
+}
+
+/* ── HOW-IT-WORKS STEP ───────────────────────── */
+.how-step { text-align: center; padding: 0 24px; }
+
+.how-step-num {
+  width: 100px;
+  height: 100px;
+  border: 1px solid rgba(255, 45, 107, 0.2);
+  border-radius: 50%;
+  margin: 0 auto 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: var(--rose);
+  background: var(--ink-2);
+  position: relative;
+  z-index: 1;
+  transition: border-color var(--trans-base), box-shadow var(--trans-base);
+}
+.how-step:hover .how-step-num {
+  border-color: var(--rose);
+  box-shadow: 0 0 50px rgba(255, 45, 107, 0.22);
+}
+
+.how-step-title {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--white);
+  margin-bottom: 12px;
+}
+.how-step-desc {
+  font-size: 0.85rem;
+  font-weight: 300;
+  color: var(--silver);
+  line-height: 1.8;
+}
+
+/* ── IMPACT CELL ─────────────────────────────── */
+.impact-cell {
+  background: var(--card);
+  padding: 52px 20px;
+  border-right: 1px solid var(--mist-line);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  transition: background var(--trans-base);
+}
+.impact-cell:hover { background: rgba(255, 45, 107, 0.02); }
+.impact-cell:last-child { border-right: none; }
+
+.impact-val {
+  font-family: var(--font-mono);
+  font-size: clamp(1.8rem, 3vw, 2.8rem);
+  font-weight: 700;
+  color: var(--rose);
+  display: block;
+  margin-bottom: 8px;
+  letter-spacing: -0.02em;
+}
+.impact-label {
+  font-size: 0.66rem;
+  font-weight: 300;
+  color: var(--dim);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+/* ── MISSION BOX ─────────────────────────────── */
+.mission-box {
+  background: var(--ink-2);
+  border: 1px solid var(--mist-line);
+  padding: 36px;
+  clip-path: var(--clip-card);
+  margin-top: 2px;
+}
+.mission-box p {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-style: italic;
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.6;
+}
+.mission-box p span { color: var(--rose); }
+
+/* ── RESPONSIVE ─────────────────────────────── */
+@media (max-width: 1024px) {
+  .role-panel-header { grid-template-columns: 1fr; }
+  .role-big-num { font-size: 6rem; }
+  .feats-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 768px) {
+  .feat-card { padding: 28px 24px; }
+  .problem-cell { padding: 36px 28px; }
+  .roles-nav { flex-wrap: wrap; }
+  .role-tab { flex: none; width: 50%; }
+  .role-panel-header { gap: 24px; }
+}
+
+/* ================================================
+   STARTIQ.AI — Page Sections
+================================================ */
+
+/* ──────────────────────────────────────────────
+   HERO
+────────────────────────────────────────────── */
+#hero {
+  min-height: 100vh;
+  padding-top: var(--nav-height);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Background mesh */
+.hero-mesh {
+  position: absolute;
+  inset: 0; z-index: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 62% 32%, rgba(255, 45, 107, 0.07) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 42% at 18% 72%, rgba(255, 45, 107, 0.05) 0%, transparent 55%),
+    radial-gradient(ellipse 38% 50% at 88% 80%, rgba(255, 107, 149, 0.04) 0%, transparent 50%);
+}
+
+/* Diagonal light stripe */
+.hero-stripe {
+  position: absolute;
+  top: -10%; right: -5%;
+  width: 55%; height: 130%;
+  background: linear-gradient(175deg,
+    rgba(255, 45, 107, 0.025) 0%,
+    rgba(255, 45, 107, 0.012) 40%,
+    transparent 70%);
+  transform: skewX(-8deg);
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Animated scan line */
+.hero-scan {
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 1px;
+  background: linear-gradient(180deg, transparent, var(--rose), transparent);
+  opacity: 0.16;
+  animation: scan 8s ease-in-out infinite;
+  z-index: 0;
+}
+
+/* Inner grid */
+.hero-inner {
+  position: relative;
+  z-index: var(--z-content);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 0;
+  min-height: calc(100vh - var(--nav-height));
+  padding: 80px 0 60px;
+}
+
+.hero-left { padding-right: 60px; }
+
+/* Eyebrow tag */
+.hero-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 40px;
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  color: var(--rose-2);
+  text-transform: uppercase;
+  animation: heroTag 0.8s var(--ease-out) both 0.2s;
+}
+.hero-tag-line {
+  width: 32px; height: 1px;
+  background: var(--rose);
+  opacity: 0.7;
+}
+.hero-tag-dot {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--rose);
+  animation: throb 1.8s ease-in-out infinite;
+}
+
+/* Headline */
+.hero-h1 {
+  font-size: clamp(3.5rem, 6vw, 6.8rem);
+  line-height: 0.96;
+  margin-bottom: 36px;
+  animation: fadeUp 0.9s var(--ease-out) both 0.35s;
+}
+.hero-h1 em {
+  display: block;
+  font-style: italic;
+  color: var(--rose);
+  position: relative;
+}
+.hero-h1 em::after {
+  content: '';
+  position: absolute;
+  bottom: -4px; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--rose), transparent);
+}
+.hero-h1 .ghost {
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.18);
+  color: transparent;
+}
+
+/* Subtext */
+.hero-p {
+  font-size: 1rem;
+  font-weight: 300;
+  color: var(--silver);
+  line-height: 1.9;
+  max-width: 480px;
+  margin-bottom: 48px;
+  animation: fadeUp 1s var(--ease-out) both 0.5s;
+}
+.hero-p strong { color: var(--white); font-weight: 500; }
+
+/* Buttons */
+.hero-actions {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 64px;
+  animation: fadeUp 1s var(--ease-out) both 0.65s;
+}
+
+/* Stats bar */
+.hero-numbers {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  border-top: 1px solid var(--mist-line);
+  padding-top: 36px;
+  animation: fadeUp 1s var(--ease-out) both 0.8s;
+}
+.hero-num-item {
+  padding-right: 24px;
+  border-right: 1px solid var(--mist-line);
+}
+.hero-num-item:last-child {
+  border-right: none;
+  padding-right: 0;
+}
+.hero-num-val {
+  font-family: var(--font-mono);
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: var(--rose);
+  letter-spacing: -0.02em;
+  display: block;
+  line-height: 1.1;
+}
+.hero-num-label {
+  font-size: 0.64rem;
+  font-weight: 300;
+  color: var(--dim);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-top: 5px;
+  display: block;
+}
+
+/* Right visual */
+.hero-right {
+  position: relative;
+  height: 100%;
+  min-height: 540px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 1.2s var(--ease-out) both 0.5s;
+}
+
+.hero-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 45, 107, 0.09);
+}
+.hero-ring:nth-child(1) { width: 500px; height: 500px; }
+.hero-ring:nth-child(2) { width: 380px; height: 380px; border-color: rgba(255, 45, 107, 0.06); }
+.hero-ring:nth-child(3) { width: 240px; height: 240px; border-color: rgba(255, 45, 107, 0.05); }
+
+.hero-glow {
+  position: absolute;
+  width: 260px; height: 260px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 45, 107, 0.12) 0%, transparent 70%);
+  animation: breathe 4s ease-in-out infinite;
+  top: 50%; left: 50%;
+}
+
+/* Orbit tags */
+.orbit-tag {
+  position: absolute;
+  font-family: var(--font-mono);
+  font-size: 0.54rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--rose-2);
+  background: rgba(255, 45, 107, 0.06);
+  border: 1px solid rgba(255, 45, 107, 0.18);
+  padding: 5px 12px;
+  white-space: nowrap;
+}
+.orbit-tag:nth-child(5) { top: 8%;  left: 50%; transform: translateX(-50%); }
+.orbit-tag:nth-child(6) { top: 28%; right: 2%; }
+.orbit-tag:nth-child(7) { bottom: 28%; right: 2%; }
+.orbit-tag:nth-child(8) { bottom: 8%; left: 50%; transform: translateX(-50%); }
+.orbit-tag:nth-child(9) { bottom: 28%; left: 2%; }
+.orbit-tag:nth-child(10){ top: 28%; left: 2%; }
+
+.hero-center-text {
+  position: absolute;
+  text-align: center;
+  z-index: 2;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+}
+.hero-center-text .tiny {
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  color: rgba(255, 255, 255, 0.07);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.hero-center-text .iq {
+  font-family: var(--font-display);
+  font-size: clamp(4rem, 8vw, 7rem);
+  font-weight: 900;
+  line-height: 0.9;
+  color: rgba(255, 45, 107, 0.06);
+  letter-spacing: -0.04em;
+  -webkit-text-stroke: 1px rgba(255, 45, 107, 0.12);
+}
+
+/* ──────────────────────────────────────────────
+   ABOUT
+────────────────────────────────────────────── */
+#about {
+  padding: var(--space-11) 0;
+  background: var(--ink);
+  position: relative;
+}
+#about::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--rose), transparent);
+  opacity: 0.14;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 100px;
+  align-items: start;
+}
+
+.about-pull {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 700;
+  font-style: italic;
+  color: var(--white);
+  border-left: 3px solid var(--rose);
+  padding-left: 22px;
+  margin-bottom: 28px;
+  line-height: 1.55;
+}
+
+.about-body {
+  font-size: 0.95rem;
+  font-weight: 300;
+  color: var(--silver);
+  line-height: 1.95;
+}
+.about-body strong { color: var(--white); font-weight: 500; }
+
+.stat-stack {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  margin-bottom: 2px;
+}
+
+/* ──────────────────────────────────────────────
+   PROBLEM
+────────────────────────────────────────────── */
+#problem {
+  padding: var(--space-11) 0;
+  background: var(--ink-2);
+  position: relative;
+}
+
+.problem-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  margin-top: 64px;
+}
+
+/* ──────────────────────────────────────────────
+   PLATFORM
+────────────────────────────────────────────── */
+#platform {
+  padding: var(--space-11) 0;
+  background: var(--ink);
+  position: relative;
+}
+
+/* ──────────────────────────────────────────────
+   HOW IT WORKS
+────────────────────────────────────────────── */
+#how {
+  padding: var(--space-11) 0;
+  background: var(--ink-2);
+  position: relative;
+}
+
+.how-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  margin-top: 72px;
+  position: relative;
+}
+.how-grid::before {
+  content: '';
+  position: absolute;
+  top: 50px;
+  left: 12%; right: 12%;
+  height: 1px;
+  background: linear-gradient(90deg, var(--rose), rgba(255, 45, 107, 0.12), transparent);
+  z-index: 0;
+}
+
+/* ──────────────────────────────────────────────
+   IMPACT
+────────────────────────────────────────────── */
+#impact {
+  padding: var(--space-11) 0;
+  background: var(--ink);
+  text-align: center;
+  position: relative;
+}
+#impact::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(255, 45, 107, 0.05) 0%, transparent 65%);
+}
+
+.impact-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 2px;
+  margin-top: 72px;
+  border: 1px solid var(--mist-line);
+}
+
+/* ──────────────────────────────────────────────
+   INSIGHTS
+────────────────────────────────────────────── */
+#insights {
+  padding: var(--space-11) 0;
+  background: var(--ink-2);
+  position: relative;
+}
+
+.insights-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 32px;
+  margin-bottom: 72px;
+}
+
+.insights-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+}
+
+/* ──────────────────────────────────────────────
+   CTA BAND
+────────────────────────────────────────────── */
+#cta {
+  padding: 180px 0;
+  background: var(--ink);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+#cta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 50% at 50% 50%,  rgba(255, 45, 107, 0.07) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 30% at 50% 100%, rgba(255, 45, 107, 0.04) 0%, transparent 50%);
+}
+
+.cta-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  color: var(--rose);
+  text-transform: uppercase;
+  margin-bottom: 28px;
+  display: block;
+}
+
+.cta-h {
+  font-size: clamp(3.2rem, 6vw, 6rem);
+  line-height: 0.96;
+  letter-spacing: -0.025em;
+  margin-bottom: 28px;
+}
+.cta-h em { font-style: italic; color: var(--rose); }
+
+.cta-sub {
+  font-size: 1rem;
+  font-weight: 300;
+  color: var(--silver);
+  max-width: 520px;
+  margin: 0 auto 56px;
+  line-height: 1.9;
+}
+
+.cta-btns {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+
+.cta-meta {
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  font-weight: 300;
+  letter-spacing: 0.16em;
+  color: var(--dim);
+  text-transform: uppercase;
+}
+
+/* ──────────────────────────────────────────────
+   FOOTER
+────────────────────────────────────────────── */
+footer {
+  background: var(--ink-2);
+  border-top: 1px solid var(--mist-line);
+  padding: 80px 0 40px;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2.2fr 1fr 1fr 1fr;
+  gap: 60px;
+  margin-bottom: 60px;
+}
+
+.footer-logo {
+  font-family: var(--font-mono);
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 1px;
+  margin-bottom: 18px;
+}
+.footer-logo-text { color: var(--white); }
+.footer-logo-dot  { color: var(--rose); font-size: 1.4rem; line-height: 1; }
+.footer-logo-ai   { color: var(--rose); }
+
+.footer-tagline {
+  font-size: 0.87rem;
+  font-weight: 300;
+  color: var(--dim);
+  line-height: 1.8;
+  max-width: 280px;
+  margin-bottom: 28px;
+}
+
+.footer-socials {
+  display: flex;
+  gap: 10px;
+}
+.footer-social {
+  width: 36px; height: 36px;
+  border: 1px solid var(--mist-line);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  color: var(--dim);
+  transition: border-color var(--trans-fast), color var(--trans-fast);
+}
+.footer-social:hover { border-color: var(--rose); color: var(--rose); }
+
+.footer-col h5 {
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: var(--dim);
+  text-transform: uppercase;
+  margin-bottom: 22px;
+}
+.footer-col a {
+  display: block;
+  font-size: 0.87rem;
+  font-weight: 300;
+  color: var(--silver);
+  margin-bottom: 12px;
+  transition: color var(--trans-fast);
+}
+.footer-col a:hover { color: var(--rose); }
+
+.footer-bottom {
+  border-top: 1px solid var(--mist-line);
+  padding-top: 28px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.footer-bottom p,
+.footer-bottom a {
+  font-size: 0.76rem;
+  font-weight: 300;
+  color: var(--dim);
+}
+.footer-bottom a { transition: color var(--trans-fast); }
+.footer-bottom a:hover { color: var(--rose); }
+.footer-bottom-links { display: flex; gap: 20px; }
+
+/* ──────────────────────────────────────────────
+   RESPONSIVE
+────────────────────────────────────────────── */
+@media (max-width: 1100px) {
+  .hero-inner       { grid-template-columns: 1fr; gap: 60px; }
+  .hero-right       { min-height: 360px; }
+  .hero-left        { padding-right: 0; }
+  .about-grid       { grid-template-columns: 1fr; gap: 60px; }
+  .impact-grid      { grid-template-columns: repeat(3, 1fr); }
+  .how-grid         { grid-template-columns: repeat(2, 1fr); gap: 40px; }
+  .how-grid::before { display: none; }
+  .footer-grid      { grid-template-columns: 1fr 1fr; gap: 40px; }
+}
+
+@media (max-width: 768px) {
+  .hero-numbers    { grid-template-columns: repeat(2, 1fr); }
+  .problem-grid    { grid-template-columns: 1fr; }
+  .insights-grid   { grid-template-columns: 1fr; }
+  .impact-grid     { grid-template-columns: repeat(2, 1fr); }
+  .how-grid        { grid-template-columns: 1fr; }
+  .footer-grid     { grid-template-columns: 1fr; }
+  .insights-header { flex-direction: column; align-items: flex-start; }
+  .stat-stack      { grid-template-columns: 1fr; }
+  #cta             { padding: 120px 0; }
+}
+
+
+</style>
+</head>
+<body>
+
+  <!-- ── PAGE LOADER ──────────────────────────── -->
+  <div id="page-loader">
+    <div class="loader-logo">START<span>·IQ.AI</span></div>
+    <div class="loader-bar"></div>
+  </div>
+
+  <!-- ── CURSOR ───────────────────────────────── -->
+  <div id="cursor-outer"></div>
+  <div id="cursor-inner"></div>
+
+  <!-- ═══════════════════════════════════════════
+       NAVBAR
+  ═══════════════════════════════════════════ -->
+  <nav id="main-nav">
+    <a href="#hero" class="nav-logo">
+      <span class="nav-logo-text">START</span>
+      <span class="nav-logo-dot">·</span>
+      <span class="nav-logo-ai">IQ.AI</span>
+    </a>
+
+    <button class="nav-ham" id="nav-ham" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#problem">Problem</a></li>
+      <li><a href="#platform">Platform</a></li>
+      <li><a href="#how">Process</a></li>
+      <li><a href="#insights">Insights</a></li>
+    </ul>
+
+    <a href="#cta" class="nav-cta"><span>Let's Talk</span></a>
+  </nav>
+
+  <!-- Mobile nav drawer -->
+  <div id="nav-mobile" class="nav-mobile">
+    <a href="#about">About</a>
+    <a href="#problem">Problem</a>
+    <a href="#platform">Platform</a>
+    <a href="#how">Process</a>
+    <a href="#insights">Insights</a>
+    <a href="#cta" class="nav-cta-mobile">Let's Talk →</a>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       HERO
+  ═══════════════════════════════════════════ -->
+  <section id="hero">
+    <canvas class="blob-canvas" id="blob-hero" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;"></canvas>
+    <div class="hero-mesh"></div>
+    <div class="hero-stripe"></div>
+    <div class="hero-scan"></div>
+
+    <div class="container">
+      <div class="hero-inner">
+
+        <!-- Left -->
+        <div class="hero-left">
+          <div class="hero-tag">
+            <div class="hero-tag-line"></div>
+            <div class="hero-tag-dot"></div>
+            World's First Complete Startup OS
+          </div>
+
+          <h1 class="hero-h1">
+            Turn Raw<br>
+            <em>Ideas Into</em><br>
+            <span class="ghost">Systems.</span>
+          </h1>
+
+          <p class="hero-p">
+            <strong>StartIQ.ai</strong> is the only platform built to take a founder from the very first idea to the final outcome — with <strong>6 roles, 36 features</strong>, and AI intelligence replacing guesswork at every stage.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#cta" class="btn-rose">Analyze My Idea</a>
+            <a href="#platform" class="btn-ghost">See The Platform</a>
+          </div>
+
+          <div class="hero-numbers">
+            <div class="hero-num-item">
+              <span class="hero-num-val" data-count="36">0</span>
+              <span class="hero-num-label">Features</span>
+            </div>
+            <div class="hero-num-item">
+              <span class="hero-num-val" data-count="6">0</span>
+              <span class="hero-num-label">Roles</span>
+            </div>
+            <div class="hero-num-item">
+              <span class="hero-num-val" data-count="150" data-sfx="+">0</span>
+              <span class="hero-num-label">College Partners</span>
+            </div>
+            <div class="hero-num-item">
+              <span class="hero-num-val" data-count="40" data-sfx="+">0</span>
+              <span class="hero-num-label">Countries</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right -->
+        <div class="hero-right">
+          <div class="hero-ring"></div>
+          <div class="hero-ring"></div>
+          <div class="hero-ring"></div>
+          <div class="hero-glow"></div>
+          <div class="orbit-tag">Idea Validation</div>
+          <div class="orbit-tag">Growth Engine</div>
+          <div class="orbit-tag">HR Automation</div>
+          <div class="orbit-tag">Exit Intelligence</div>
+          <div class="orbit-tag">Talent Network</div>
+          <div class="orbit-tag">Founder Health</div>
+          <div class="hero-center-text">
+            <div class="tiny">Startup Intelligence</div>
+            <div class="iq">IQ</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- TICKER -->
+  <div class="ticker">
+    <div class="ticker-track">
+      <span>STARTIQ.AI</span><span class="accent">✦</span>
+      <span>STARTUP INTELLIGENCE</span><span class="accent">✦</span>
+      <span>IDEA VALIDATION</span><span class="accent">✦</span>
+      <span>EXECUTION SYSTEMS</span><span class="accent">✦</span>
+      <span>HR AUTOMATION</span><span class="accent">✦</span>
+      <span>CONFLICT RESOLUTION</span><span class="accent">✦</span>
+      <span>TALENT NETWORK</span><span class="accent">✦</span>
+      <span>GROWTH INTELLIGENCE</span><span class="accent">✦</span>
+      <span>INVESTOR PIPELINE</span><span class="accent">✦</span>
+      <span>BURNOUT MONITOR</span><span class="accent">✦</span>
+      <!-- Duplicate for seamless loop -->
+      <span>STARTIQ.AI</span><span class="accent">✦</span>
+      <span>STARTUP INTELLIGENCE</span><span class="accent">✦</span>
+      <span>IDEA VALIDATION</span><span class="accent">✦</span>
+      <span>EXECUTION SYSTEMS</span><span class="accent">✦</span>
+      <span>HR AUTOMATION</span><span class="accent">✦</span>
+      <span>CONFLICT RESOLUTION</span><span class="accent">✦</span>
+      <span>TALENT NETWORK</span><span class="accent">✦</span>
+      <span>GROWTH INTELLIGENCE</span><span class="accent">✦</span>
+      <span>INVESTOR PIPELINE</span><span class="accent">✦</span>
+      <span>BURNOUT MONITOR</span><span class="accent">✦</span>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       ABOUT
+  ═══════════════════════════════════════════ -->
+  <section id="about">
+    <canvas class="blob-canvas" id="blob-about" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;"></canvas>
+    <div class="container">
+      <div class="about-grid">
+
+        <div>
+          <div class="eyebrow rv"><div class="eyebrow-dash"></div>Our Mission</div>
+          <h2 class="section-h2 rv d1">
+            Creating a brighter future<br>
+            <em>with intelligent AI</em>
+          </h2>
+          <div class="about-pull rv d2">
+            "To help every founder build a better startup by replacing guesswork with structured intelligence — from first idea to final outcome."
+          </div>
+          <div class="about-body rv d3">
+            StartIQ.ai is the world's first <strong>complete AI-powered Startup Operating System</strong>. We identified that 90% of startups fail — not because founders lack talent, but because they lack systems, structure, and intelligence at every stage.<br><br>
+            We built the system every founder deserves — regardless of background, city, or connections. <strong>6 roles. 36 features. Zero guesswork.</strong>
+          </div>
+        </div>
+
+        <div>
+          <div class="stat-stack rv from-right d1">
+            <div class="stat-box"><span class="stat-val" data-count="305" data-sfx="M+">0</span><div class="stat-label">Startups launched globally each year</div></div>
+            <div class="stat-box"><span class="stat-val">90%</span><div class="stat-label">Failure rate we're built to reduce</div></div>
+            <div class="stat-box"><span class="stat-val">$650B</span><div class="stat-label">Total addressable market</div></div>
+            <div class="stat-box"><span class="stat-val" data-count="36">0</span><div class="stat-label">Features across 6 roles</div></div>
+          </div>
+          <div class="mission-box rv from-right d3">
+            <p>"Every founder deserves a fair shot — <span>regardless of background, city, or connections.</span> StartIQ.ai is the infrastructure that makes that possible."</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       PROBLEM
+  ═══════════════════════════════════════════ -->
+  <section id="problem">
+    <canvas class="blob-canvas" id="blob-problem" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;"></canvas>
+    <div class="container">
+      <div class="eyebrow rv"><div class="eyebrow-dash"></div>The Problem We Solve</div>
+      <h2 class="section-h2 rv d1">90% of startups fail.<br><em>Not because of talent.</em></h2>
+      <p class="section-desc rv d2">Because of missing systems, structures, and intelligence. We identified 6 root causes — and built a solution for every single one.</p>
+
+      <div class="problem-grid">
+        <div class="problem-cell rv d1">
+          <div class="prob-badge">ROOT CAUSE</div>
+          <span class="prob-num">01 — VALIDATION</span>
+          <div class="prob-h">No Structured Validation System</div>
+          <p class="prob-p">Founders build products without testing core assumptions, spending months of capital on ideas users never wanted. The AI Validation Engine prevents this entirely — before a single rupee is spent.</p>
+        </div>
+        <div class="problem-cell rv d2">
+          <div class="prob-badge">ROOT CAUSE</div>
+          <span class="prob-num">02 — EXECUTION</span>
+          <div class="prob-h">No Execution Intelligence</div>
+          <p class="prob-p">Strategy lives in the founder's head with no system to convert it into milestones, actions, or a measurable roadmap. The Execution Roadmap Engine changes this permanently.</p>
+        </div>
+        <div class="problem-cell rv d3">
+          <div class="prob-badge">ROOT CAUSE</div>
+          <span class="prob-num">03 — OPERATIONS</span>
+          <div class="prob-h">No Operational Infrastructure</div>
+          <p class="prob-p">HR, payroll, onboarding, compliance — all running on spreadsheets and manual effort every week. The HR Automation Engine in Role 5 eliminates every single manual task.</p>
+        </div>
+        <div class="problem-cell rv d4">
+          <div class="prob-badge">ROOT CAUSE</div>
+          <span class="prob-num">04 — CONFLICT</span>
+          <div class="prob-h">Co-Founder Disputes Kill Teams</div>
+          <p class="prob-p">Equity disputes and unresolved role conflicts are the leading cause of early startup death. No platform in the world has ever addressed this directly — until now.</p>
+        </div>
+        <div class="problem-cell rv d5">
+          <div class="prob-badge">ROOT CAUSE</div>
+          <span class="prob-num">05 — FUNDRAISING</span>
+          <div class="prob-h">Founders Pitch Blind</div>
+          <p class="prob-p">Without readiness scores, structured narratives, or a pipeline management system, founders approach investors unprepared and sign terms they do not understand.</p>
+        </div>
+        <div class="problem-cell rv d6">
+          <div class="prob-badge">ROOT CAUSE</div>
+          <span class="prob-num">06 — HUMAN COST</span>
+          <div class="prob-h">Burnout Is Invisible</div>
+          <p class="prob-p">Founder mental health and burnout are epidemic — and completely ignored by every accelerator, platform, and tool that exists today. We built the first platform-native wellbeing layer.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       PLATFORM (6 ROLES + TAB SYSTEM)
+  ═══════════════════════════════════════════ -->
+  <section id="platform">
+    <div class="container">
+      <div class="eyebrow rv"><div class="eyebrow-dash"></div>The Platform</div>
+      <h2 class="section-h2 rv d1">6 Roles. 36 Features.<br><em>One Operating System.</em></h2>
+      <p class="section-desc rv d2">Each role targets a specific user and a specific set of problems. Click a role to explore all its features in full detail.</p>
+
+      <!-- Role navigation tabs -->
+      <div class="roles-nav rv d3" id="roles-nav">
+        <div class="role-tab active" data-role="panel-r1"><span class="rt-num">ROLE 01</span><div class="rt-label">Early-Stage Founders</div></div>
+        <div class="role-tab" data-role="panel-r2"><span class="rt-num">ROLE 02</span><div class="rt-label">Growth-Stage Startups</div></div>
+        <div class="role-tab" data-role="panel-r3"><span class="rt-num">ROLE 03</span><div class="rt-label">Founder Environment</div></div>
+        <div class="role-tab" data-role="panel-r4"><span class="rt-num">ROLE 04</span><div class="rt-label">Talent Network</div></div>
+        <div class="role-tab" data-role="panel-r5"><span class="rt-num">ROLE 05</span><div class="rt-label">HR Automation</div></div>
+        <div class="role-tab" data-role="panel-r6"><span class="rt-num">ROLE 06</span><div class="rt-label">Conflict Resolution</div></div>
+      </div>
+
+      <!-- PANEL R1 -->
+      <div class="role-panel active" id="panel-r1">
+        <canvas class="blob-canvas" id="blob-r1" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;"></canvas>
+        <div class="role-panel-header">
+          <div class="role-big-num">01</div>
+          <div>
+            <h3 class="role-panel-title">Early-Stage Founders —<br><em>From Idea to Decision.</em></h3>
+            <p class="role-panel-sub">For people who have a startup idea and haven't built anything yet. The platform becomes their first thinking partner — replacing guesswork with structured intelligence from day one.</p>
+          </div>
+        </div>
+        <div class="feats-grid">
+          <div class="feat-card"><span class="feat-tag">FEATURE 01</span><div class="feat-icon">🎯</div><div class="feat-name">Idea Validation AI</div><div class="feat-desc">AI analyses your startup concept across 5 dimensions: problem strength, market size, competitor landscape, feasibility, and opportunity score. Full validation report before writing a single line of code.</div><div class="feat-problem"><span class="feat-problem-label">Problem Solved</span><p>Founders build for months without testing assumptions — then launch to silence.</p></div></div>
+          <div class="feat-card"><span class="feat-tag">FEATURE 02</span><div class="feat-icon">🗺️</div><div class="feat-name">Execution &amp; Visual Roadmap</div><div class="feat-desc">Converts validated strategy into a milestone-based visual execution plan — phases, action items, timelines, and investor-ready pitch deck narrative, all generated from your data automatically.</div><div class="feat-problem"><span class="feat-problem-label">Problem Solved</span><p>Strategy stays in the founder's head with no system to convert it into action.</p></div></div>
+          <div class="feat-card"><span class="feat-tag">FEATURE 03</span><div class="feat-icon">⚗️</div><div class="feat-name">Lean Methodology Tools</div><div class="feat-desc">Design the smallest possible experiments to validate critical assumptions before over-building. AI identifies which assumptions will kill the business if wrong — and designs lightweight tests for each.</div><div class="feat-problem"><span class="feat-problem-label">Problem Solved</span><p>Founders build complete products before discovering the core assumption was wrong.</p></div></div>
+          <div class="feat-card"><span class="feat-tag">FEATURE 04</span><div class="feat-icon">🤖</div><div class="feat-name">AI Content &amp; Brand Automation</div><div class="feat-desc">AI generates, schedules, and monitors brand content across LinkedIn, email, and social — consistent professional presence without the founder manually writing a single word.</div><div class="feat-problem"><span class="feat-problem-label">Problem Solved</span><p>No time to build brand while simultaneously building the product.</p></div></div>
+          <div class="feat-card"><span class="feat-tag">FEATURE 05</span><div class="feat-icon">🏗️</div><div class="feat-name">Team Building &amp; Collab Hub</div><div class="feat-desc">Centralized workspace for task assignment, project communication, file sharing, and shared decision logs — replacing scattered WhatsApp groups with a structured professional operating layer.</div><div class="feat-problem"><span class="feat-problem-label">Problem Solved</span><p>Information across 6 apps — decisions forgotten, priorities unknown.</p></div></div>
+          <div class="feat-card"><span class="feat-tag">FEATURE 06</span><div class="feat-icon">🌐</div><div class="feat-name">Community Intelligence Layer</div><div class="feat-desc">Public forums, Q&amp;A rooms, idea feedback threads, founder stories, event hubs, and community polls — a living knowledge infrastructure built around the challenges of building companies.</div><div class="feat-problem"><span class="feat-problem-label">Problem Solved</span><p>Building a startup is isolating — founders have nobody who understands their journey.</p></div></div>
+          <div class="feat-card"><span class="feat-tag">FEATURE 07</span><div class="feat-icon">🎓</div><div class="feat-name">Elite Talent &amp; College Network</div><div class="feat-desc">Skill-matched college students connected to startup projects via a relevance-first algorithm. A Python developer gets matched to backend tasks — not design briefs. Real, precise execution help.</div><div class="feat-problem"><span class="feat-problem-label">Problem Solved</span><p>Founders need execution help but can't afford full-time hires at early stage.</p></div></div>
+        </div>
+      </div>
+
+      <!-- PANEL R2 -->
+      <div class="role-panel" id="panel-r2">
+        <canvas class="blob-canvas" id="blob-r2" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;"></canvas>
+        <div class="role-panel-header">
+          <div class="role-big-num">02</div>
+          <div>
+            <h3 class="role-panel-title">Growth-Stage Startups —<br><em>From Momentum to Dominance.</em></h3>
+            <p class="role-panel-sub">For launched startups moving to market leadership. Refine positioning, automate operations, and make data-driven decisions at every scale inflection point.</p>
+          </div>
+        </div>
+        <div class="feats-grid">
+          <div class="feat-card"><span class="feat-tag">FEATURE 01</span><div class="feat-icon">📊</div><div class="feat-name">PMF Optimisation Engine</div><div class="feat-desc">AI-driven product-market fit audits analysing user behaviour, retention, and demand signals. Produces a PMF score with exact breakdown of what's resonating and what needs to change.</div><div class="feat-problem"><span class="feat-problem-label">Problem Solved</span><p>Founders believe they have PMF when they don't — no objective measurement system.</p></div></div>
+          <div class="feat-card"><span class="feat-tag">FEATURE 02</span><div class="feat-icon">💰</div><div class="feat-name">AI Financial Control &amp; Burn</div><div class="feat-desc">Real-time burn tracking, runway forecasting under multiple scenarios, and anomaly detection — flagging departments over-budget before they become crises that cannot be fixed.</div><div class="feat-problem"><span class="feat-problem-label">Problem Solved</span><p>Most founders discover cash problems 60 days too late to course-correct.</p></div></div>
+          <div class="feat-card"><span class="feat-tag">FEATURE 03</span><div class="feat-icon">⚙️</div><div class="feat-name">Smart Scaling &amp; Automation</div><div class="feat-desc">Identifies operational bottlenecks through pattern analysis and automates them — onboarding pipelines, reporting, escalation routing, and approvals without calendar meetings.</div><div class="feat-problem"><span class="feat-problem-label">Problem Solved</span><p>Manual processes that worked at 5 people collapse at 30 — causing chaos and churn.</p></div></div>
+          <div class="feat-card"><span class="feat-tag">FEATURE 04</span><div class="feat-icon">📈</div><div class="feat-name">AI Marketing &amp; SEO Engine</div><div class="feat-desc">Builds and executes organic growth strategy tied to real revenue goals — keyword opportunities, content production, distribution management, and CPA tracking, all automated.</div><div class="feat-problem"><span class="feat-problem-label">Problem Solved</span><p>Paid ads stop working the moment budget is cut — no sustainable acquisition system.</p></div></div>
+          <div class="feat-card"><span class="feat-tag">FEATURE 05</span><div class="feat-icon">💬</div><div class="feat-name">AI Customer Support 24/7</div><div class="feat-desc">Always-on AI handling the full spectrum of customer interactions — instant resolution, intelligent triage, auto-escalation with context, and churn-risk follow-ups at unlimited scale.</div><div class="feat-problem"><span class="feat-problem-label">Problem Solved</span><p>Support breaks under growth pressure — response times collapse, customers churn silently.</p></div></div>
+          <div class="feat-card"><span class="feat-tag">FEATURE 06</span><div class="feat-icon">🧠</div><div class="feat-name">Leadership Dashboard &amp; Intel</div><div class="feat-desc">Real-time executive command centre consolidating product metrics, revenue health, team performance, and customer signals — AI interpretation surfacing what needs attention now.</div><div class="feat-problem"><span class="feat-problem-label">Problem Solved</span><p>As companies grow, leadership loses visibility — data scattered across 12 tools.</p></div></div>
+          <div class="feat-card"><span class="feat-tag">FEATURE 07</span><div class="feat-icon">⚖️</div><div class="feat-name">Legal &amp; Compliance Automation</div><div class="feat-desc">Monitors the regulatory landscape in real time, tracks filing deadlines, and sends proactive alerts — converting compliance from crisis management into automated prevention.</div><div class="feat-problem"><span class="feat-problem-label">Problem Solved</span><p>Startups discover compliance violations when already in breach — penalties follow.</p></div></div>
+        </div>
+      </div>
+
+      <!-- PANEL R3 -->
+      <div class="role-panel" id="panel-r3">
+        <canvas class="blob-canvas" id="blob-r3" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;"></canvas>
+        <div class="role-panel-header">
+          <div class="role-big-num">03</div>
+          <div>
+            <h3 class="role-panel-title">Founder Environment —<br><em>Where Execution Lives.</em></h3>
+            <p class="role-panel-sub">The structured operating environment where execution actually happens — decisions made, tracked, archived, and acted on with discipline built into the system itself.</p>
+          </div>
+        </div>
+        <div class="feats-grid">
+          <div class="feat-card"><span class="feat-tag">FEATURE 01</span><div class="feat-icon">💬</div><div class="feat-name">Professional Founder Chat</div><div class="feat-desc">Discord-style structured space — strictly professional. Only execution updates, strategy discussions, and decisions. Noise excluded by architecture. Maximum signal, zero distraction.</div><div class="feat-problem"><span class="feat-problem-label">Problem Solved</span><p>Founder communication buried in WhatsApp noise — nothing important is findable.</p></div></div>
+          <div class="feat-card"><span class="feat-tag">FEATURE 02</span><div class="feat-icon">🔒</div><div class="feat-name">Private Strategy Rooms</div><div class="feat-desc">Invite-only encrypted spaces for sensitive conversations — co-founder decisions, investor negotiations, acquisition talks. Archived, searchable, isolated from the shared environment.</div><div class="feat-problem"><span class="feat-problem-label">Problem Solved</span><p>Sensitive founder conversations have no secure, structured, searchable home.</p></div></div>
+          <div class="feat-card"><span class="feat-tag">FEATURE 03</span><div class="feat-icon">🎙️</div><div class="feat-name">Live Mentor Access</div><div class="feat-desc">Structured, scheduled, problem-specific sessions with experienced founders and operators. AI matches mentor expertise to your exact challenge — not generic advice, targeted intelligence.</div><div class="feat-problem"><span class="feat-problem-label">Problem Solved</span><p>Generic mentorship is useless — founders need someone who solved their exact problem.</p></div></div>
+          <div class="feat-card"><span class="feat-tag">FEATURE 04</span><div class="feat-icon">📡</div><div class="feat-name">Execution Channels</div><div class="feat-desc">Dedicated threads by function — product, GTM, growth, fundraising, hiring, validation. Everything has a home, nothing is misrouted, every thread tagged to the relevant roadmap milestone.</div><div class="feat-problem"><span class="feat-problem-label">Problem Solved</span><p>Work across functions mixed in general channels — context always lost.</p></div></div>
+          <div class="feat-card"><span class="feat-tag">FEATURE 05</span><div class="feat-icon">📝</div><div class="feat-name">Decision Logs</div><div class="feat-desc">Permanent structured record of every significant startup decision — context, options considered, reasoning, expected outcome. Full institutional memory surviving team changes and time.</div><div class="feat-problem"><span class="feat-problem-label">Problem Solved</span><p>Critical decisions made verbally and forgotten within weeks — history is gone.</p></div></div>
+          <div class="feat-card"><span class="feat-tag">FEATURE 06</span><div class="feat-icon">✅</div><div class="feat-name">Accountability Checkpoints</div><div class="feat-desc">Weekly milestone reporting and structured execution reviews. Every commitment recorded at week start, completion reviewed at week end. Patterns surfaced automatically — not judged, tracked.</div><div class="feat-problem"><span class="feat-problem-label">Problem Solved</span><p>Most early teams have zero accountability — milestones quietly dropped every week.</p></div></div>
+        </div>
+      </div>
+
+      <!-- PANEL R4 -->
+      <div class="role-panel" id="panel-r4">
+        <canvas class="blob-canvas" id="blob-r4" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;"></canvas>
+        <div class="role-panel-header">
+          <div class="role-big-num">04</div>
+          <div>
+            <h3 class="role-panel-title">Talent Network —<br><em>Real Work. Real Skills.</em></h3>
+            <p class="role-panel-sub">Structured skill-based matchmaking connecting ambitious college students with startups. No mismatch. No irrelevant internships. Only real project relevance and verifiable portfolio evidence.</p>
+          </div>
+        </div>
+        <div class="feats-grid">
+          <div class="feat-card"><span class="feat-tag">FEATURE 01</span><div class="feat-icon">🏆</div><div class="feat-name">Industry-Level Experience</div><div class="feat-desc">Students work on real startup projects before graduation — real deliverables, real deadlines, real dependencies. Not fake case studies but actual output that startups ship and students own.</div><div class="feat-problem"><span class="feat-problem-label">Problem Solved</span><p>Internships today are performative — students do marginal work that proves nothing.</p></div></div>
+          <div class="feat-card"><span class="feat-tag">FEATURE 02</span><div class="feat-icon">🎯</div><div class="feat-name">Skill-Based Matchmaking</div><div class="feat-desc">Relevance-first algorithm matches students to startup needs based on verified skills, portfolio evidence, and past platform performance — not general field of study or availability alone.</div><div class="feat-problem"><span class="feat-problem-label">Problem Solved</span><p>Misaligned expectations waste everyone's time and produce zero value for either side.</p></div></div>
+          <div class="feat-card"><span class="feat-tag">FEATURE 03</span><div class="feat-icon">💸</div><div class="feat-name">Flexible Engagement Models</div><div class="feat-desc">Micro-projects, short-term contracts, part-time retainers, and equity-based early team roles. Every model includes defined deliverables, timelines, and quality checkpoints regardless of structure.</div><div class="feat-problem"><span class="feat-problem-label">Problem Solved</span><p>Startups need different talent engagement types at different stages — no one-size fits.</p></div></div>
+          <div class="feat-card"><span class="feat-tag">FEATURE 04</span><div class="feat-icon">📦</div><div class="feat-name">Micro-Projects → Real Income</div><div class="feat-desc">Small, well-defined, paid assignments completable in hours or days. Students earn at market rates while building a verified portfolio — proof of work over credentials, every time.</div><div class="feat-problem"><span class="feat-problem-label">Problem Solved</span><p>Students who need income can't afford unpaid work regardless of experience value.</p></div></div>
+          <div class="feat-card"><span class="feat-tag">FEATURE 05</span><div class="feat-icon">🌱</div><div class="feat-name">Mentorship &amp; Skill Development</div><div class="feat-desc">Detailed founder feedback on every project output, curated learning pathways built by operators, and structured growth frameworks — practical operator-built knowledge that actually works.</div><div class="feat-problem"><span class="feat-problem-label">Problem Solved</span><p>Students receive no actionable feedback that builds real professional judgment.</p></div></div>
+          <div class="feat-card"><span class="feat-tag">FEATURE 06</span><div class="feat-icon">🤝</div><div class="feat-name">Startup Events &amp; Ecosystem Access</div><div class="feat-desc">Invitations to pitch events, investor panels, and founder sessions. Listed in a talent directory visible to investors and operators. Professional network built before graduation — not years after.</div><div class="feat-problem"><span class="feat-problem-label">Problem Solved</span><p>Network is disproportionately inaccessible to students from non-elite institutions.</p></div></div>
+        </div>
+      </div>
+
+      <!-- PANEL R5 -->
+      <div class="role-panel" id="panel-r5">
+        <canvas class="blob-canvas" id="blob-r5" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;"></canvas>
+        <div class="role-panel-header">
+          <div class="role-big-num">05</div>
+          <div>
+            <h3 class="role-panel-title">HR Automation Engine —<br><em>Zero Manual Work.</em></h3>
+            <p class="role-panel-sub">Every repetitive HR task — hiring, onboarding, attendance, payroll, appraisals — converted into intelligent automated systems. HR teams stop doing admin and start doing people management.</p>
+          </div>
+        </div>
+        <div class="feats-grid">
+          <div class="feat-card"><span class="feat-tag">FEATURE 01</span><div class="feat-icon">🔍</div><div class="feat-name">AI Hiring Pipeline Automation</div><div class="feat-desc">Job post to signed offer — fully automated. AI writes JD, ranks resumes by fit score, conducts async screening interviews, generates offer with e-signature. 72-hour pipeline. Zero HR touchpoints.</div><div class="feat-problem"><span class="feat-problem-label">Problem Solved</span><p>Hiring takes 6 weeks of inconsistent manual work producing inconsistent results.</p></div></div>
+          <div class="feat-card"><span class="feat-tag">FEATURE 02</span><div class="feat-icon">🚀</div><div class="feat-name">Smart Onboarding System</div><div class="feat-desc">From signed offer to fully productive in 48 hours. Auto-triggered document collection, tool provisioning, role-specific AI training, and day-one task checklist — all execute on confirmation.</div><div class="feat-problem"><span class="feat-problem-label">Problem Solved</span><p>New hire's first two weeks are chaos — HR chases docs, IT delays access, no training.</p></div></div>
+          <div class="feat-card"><span class="feat-tag">FEATURE 03</span><div class="feat-icon">📅</div><div class="feat-name">Attendance, Leave &amp; Shift AI</div><div class="feat-desc">Attendance tracked via app or biometric. Leave approved or rejected instantly against policy rules. Shift rosters built automatically by workload demand. Anomaly alerts surface problems early.</div><div class="feat-problem"><span class="feat-problem-label">Problem Solved</span><p>HR spends hours weekly on attendance management that should take zero minutes.</p></div></div>
+          <div class="feat-card"><span class="feat-tag">FEATURE 04</span><div class="feat-icon">💳</div><div class="feat-name">Payroll &amp; Compliance Automation</div><div class="feat-desc">Full monthly payroll computed automatically. CTC breakup, TDS, PF, ESI calculated and filed. Payslips generated and dispatched. Statutory deadlines flagged in advance. Zero manual input.</div><div class="feat-problem"><span class="feat-problem-label">Problem Solved</span><p>Payroll takes 3 days of manual effort monthly — with error, legal, and penalty risk.</p></div></div>
+          <div class="feat-card"><span class="feat-tag">FEATURE 05</span><div class="feat-icon">📋</div><div class="feat-name">AI Performance &amp; Appraisal Engine</div><div class="feat-desc">OKRs tracked continuously. 360-degree feedback auto-collected. AI-generated performance reports with compensation recommendations. Retention risk model flags flight-risk employees weeks before resignation.</div><div class="feat-problem"><span class="feat-problem-label">Problem Solved</span><p>Appraisals based on vague memory — high performers leave feeling invisible.</p></div></div>
+        </div>
+      </div>
+
+      <!-- PANEL R6 -->
+      <div class="role-panel" id="panel-r6">
+        <canvas class="blob-canvas" id="blob-r6" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;"></canvas>
+        <div class="role-panel-header">
+          <div class="role-big-num">06</div>
+          <div>
+            <h3 class="role-panel-title">Conflict Resolution —<br><em>The Courage Layer.</em></h3>
+            <p class="role-panel-sub">The 5 most painful startup failures every other platform refuses to address — co-founder conflict, fundraising blindness, tool waste, burnout, and exit. A system for every one.</p>
+          </div>
+        </div>
+        <div class="feats-grid">
+          <div class="feat-card"><span class="feat-tag">FEATURE 01</span><div class="feat-icon">🤝</div><div class="feat-name">Co-Founder Conflict Engine</div><div class="feat-desc">Equity simulator models vesting and dilution before emotions are involved. Conflict detector monitors workload imbalance. Mediation AI runs structured resolution. All decisions archived as binding records.</div><div class="feat-problem"><span class="feat-problem-label">Problem Solved</span><p>Co-founder breakdown is the #1 cause of early startup death — no platform addresses it.</p></div></div>
+          <div class="feat-card"><span class="feat-tag">FEATURE 02</span><div class="feat-icon">💎</div><div class="feat-name">Investor Readiness &amp; Pipeline</div><div class="feat-desc">AI readiness score audits traction, team, model, moat. Pitch deck generated from platform data. Investor CRM tracks every contact. Term sheet AI decodes red clauses before you sign anything.</div><div class="feat-problem"><span class="feat-problem-label">Problem Solved</span><p>Founders approach investors unprepared and sign terms they don't understand.</p></div></div>
+          <div class="feat-card"><span class="feat-tag">FEATURE 03</span><div class="feat-icon">🔧</div><div class="feat-name">Vendor &amp; Tool Intelligence</div><div class="feat-desc">Stack auditor maps every tool, cost, and overlap. Waste detector surfaces unused seats and duplicates monthly. Benchmark AI compares spend against stage peers. Switch advisor shows cheaper alternatives with ROI.</div><div class="feat-problem"><span class="feat-problem-label">Problem Solved</span><p>Startups overspend 15–30% monthly on redundant tools nobody has audited.</p></div></div>
+          <div class="feat-card"><span class="feat-tag">FEATURE 04</span><div class="feat-icon">❤️</div><div class="feat-name">Founder Mental Health Monitor</div><div class="feat-desc">Stress signals AI observes platform behaviour silently. Weekly private pulse survey tracks wellbeing without pressure. Curated resources for focus and recovery. Peer circles connect founders at the same stage.</div><div class="feat-problem"><span class="feat-problem-label">Problem Solved</span><p>Founder burnout is epidemic and completely invisible in every platform today.</p></div></div>
+          <div class="feat-card"><span class="feat-tag">FEATURE 05</span><div class="feat-icon">🔄</div><div class="feat-name">Pivot, Exit &amp; Wind-Down AI</div><div class="feat-desc">Pivot signal AI detects when direction is objectively failing. Pivot planner generates 3 data-backed paths. Acquisition radar monitors M&amp;A signals. Wind-down guide provides complete closure checklist.</div><div class="feat-problem"><span class="feat-problem-label">Problem Solved</span><p>Founders push dead directions for 18+ months — no system tells them when to stop.</p></div></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       HOW IT WORKS
+  ═══════════════════════════════════════════ -->
+  <section id="how">
+    <canvas class="blob-canvas" id="blob-how" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;"></canvas>
+    <div class="container" style="text-align:center;">
+      <div class="eyebrow rv" style="justify-content:center;"><div class="eyebrow-dash"></div>How It Works</div>
+      <h2 class="section-h2 rv d1" style="text-align:center;">Four Steps to<br><em>Execution Intelligence</em></h2>
+      <div class="how-grid rv d2">
+        <div class="how-step">
+          <div class="how-step-num">01</div>
+          <div class="how-step-title">Idea Structuring</div>
+          <div class="how-step-desc">Analyse your concept. Build the roadmap. Identify skill gaps. Define execution phases. All AI-driven, all structured, all before you spend a rupee.</div>
+        </div>
+        <div class="how-step">
+          <div class="how-step-num">02</div>
+          <div class="how-step-title">Skill Intelligence</div>
+          <div class="how-step-desc">Students and talent matched to your exact needs via relevance algorithm — no randomness, no mismatch, guaranteed precision every time.</div>
+        </div>
+        <div class="how-step">
+          <div class="how-step-num">03</div>
+          <div class="how-step-title">Micro Execution</div>
+          <div class="how-step-desc">Short cycles. Clear deliverables. Real portfolio built. Accountability checkpoints enforce the discipline most early teams completely lack.</div>
+        </div>
+        <div class="how-step">
+          <div class="how-step-num">04</div>
+          <div class="how-step-title">Growth Layer</div>
+          <div class="how-step-desc">AI automation activates — HR runs itself, compliance monitors itself, growth scales itself. Sustainable scaling that doesn't break the company.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       IMPACT
+  ═══════════════════════════════════════════ -->
+  <section id="impact">
+    <canvas class="blob-canvas" id="blob-impact" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;"></canvas>
+    <div class="container">
+      <div class="eyebrow rv" style="justify-content:center;"><div class="eyebrow-dash"></div>The Numbers</div>
+      <h2 class="section-h2 rv d1" style="text-align:center;">The Scale of<br><em>The Mission</em></h2>
+      <div class="impact-grid rv d2">
+        <div class="impact-cell"><span class="impact-val" data-count="6">0</span><div class="impact-label">Distinct Roles</div></div>
+        <div class="impact-cell"><span class="impact-val" data-count="36">0</span><div class="impact-label">Total Features</div></div>
+        <div class="impact-cell"><span class="impact-val">305M+</span><div class="impact-label">Startups / Year</div></div>
+        <div class="impact-cell"><span class="impact-val">$650B</span><div class="impact-label">Market Opportunity</div></div>
+        <div class="impact-cell"><span class="impact-val">90%→?</span><div class="impact-label">Failure Rate We Target</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       INSIGHTS
+  ═══════════════════════════════════════════ -->
+  <section id="insights">
+    <div class="container">
+      <div class="insights-header rv">
+        <div>
+          <div class="eyebrow"><div class="eyebrow-dash"></div>Insights</div>
+          <h2 class="section-h2" style="margin-bottom:0;">Founder Intelligence<br><em>Library</em></h2>
+        </div>
+        <a href="#" class="btn-ghost" style="padding:12px 26px;font-size:.78rem;">View All →</a>
+      </div>
+      <div class="insights-grid">
+        <div class="insight-card rv d1">
+          <div class="insight-thumb"><span>🚀</span></div>
+          <div class="insight-body">
+            <span class="insight-cat">Strategy</span>
+            <div class="insight-title">Why 90% of Early-Stage Startups Fail in Year One</div>
+            <div class="insight-excerpt">The three structural gaps most founders miss — and how intelligent execution systems close them permanently before capital runs out.</div>
+          </div>
+        </div>
+        <div class="insight-card rv d2">
+          <div class="insight-thumb" style="background:linear-gradient(135deg,rgba(139,92,246,.12),rgba(255,45,107,.06));"><span>📊</span></div>
+          <div class="insight-body">
+            <span class="insight-cat" style="color:#a78bfa;">Growth</span>
+            <div class="insight-title">The PMF Audit: How to Know When You've Found It</div>
+            <div class="insight-excerpt">Data-backed signals that confirm product-market fit — and the automation levers to double down at exactly the right moment.</div>
+          </div>
+        </div>
+        <div class="insight-card rv d3">
+          <div class="insight-thumb" style="background:linear-gradient(135deg,rgba(16,185,129,.08),rgba(255,45,107,.06));"><span>🎓</span></div>
+          <div class="insight-body">
+            <span class="insight-cat" style="color:#34d399;">Talent</span>
+            <div class="insight-title">How College Talent Became the Startup Execution Edge</div>
+            <div class="insight-excerpt">Why the smartest founders use structured student networks to move faster than their well-funded competitors.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       CTA
+  ═══════════════════════════════════════════ -->
+  <section id="cta">
+    <canvas class="blob-canvas" id="blob-cta" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;"></canvas>
+    <div class="container" style="position:relative;z-index:2;">
+      <span class="cta-eyebrow rv">StartIQ.ai — Founder OS</span>
+      <h2 class="cta-h rv d1">Ready to Build<br><em>With Intelligence?</em></h2>
+      <p class="cta-sub rv d2">Stop guessing. Start executing. Let StartIQ.ai transform your raw idea into a validated, fundable, executable business system — from day one to exit.</p>
+      <div class="cta-btns rv d3">
+        <a href="mailto:shashwatdogra13@gmail.com" class="btn-rose">Analyze My Idea — Free</a>
+        <a href="mailto:shashwatdogra13@gmail.com" class="btn-ghost">Talk to the Founder</a>
+      </div>
+      <div class="cta-meta rv d4">shashwatdogra13@gmail.com &nbsp;·&nbsp; Chandigarh, India &nbsp;·&nbsp; startiq.ai</div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       FOOTER
+  ═══════════════════════════════════════════ -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a href="#hero" class="footer-logo">
+            <span class="footer-logo-text">START</span>
+            <span class="footer-logo-dot">·</span>
+            <span class="footer-logo-ai">IQ.AI</span>
+          </a>
+          <p class="footer-tagline">The world's first complete AI-powered Startup Operating System — from first idea to final outcome. 6 roles. 36 features. Zero guesswork.</p>
+          <div class="footer-socials">
+            <a href="#" class="footer-social">𝕏</a>
+            <a href="#" class="footer-social">in</a>
+            <a href="#" class="footer-social">▶</a>
+            <a href="#" class="footer-social">⌥</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h5>Platform</h5>
+          <a href="#platform">Early-Stage Tools</a>
+          <a href="#platform">Growth Engine</a>
+          <a href="#platform">HR Automation</a>
+          <a href="#platform">Conflict Resolution</a>
+          <a href="#platform">Talent Network</a>
+        </div>
+        <div class="footer-col">
+          <h5>Company</h5>
+          <a href="#about">About Us</a>
+          <a href="#insights">Insights</a>
+          <a href="#how">How It Works</a>
+          <a href="mailto:shashwatdogra13@gmail.com">Contact</a>
+          <a href="pages/about.html">Full About Page</a>
+        </div>
+        <div class="footer-col">
+          <h5>Resources</h5>
+          <a href="#">Documentation</a>
+          <a href="#">API Access</a>
+          <a href="pages/privacy.html">Privacy Policy</a>
+          <a href="pages/terms.html">Terms of Use</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 StartIQ.ai — All rights reserved. Built for serious founders.</p>
+        <div class="footer-bottom-links">
+          <a href="pages/privacy.html">Privacy</a>
+          <a href="pages/terms.html">Terms</a>
+          <a href="mailto:shashwatdogra13@gmail.com">shashwatdogra13@gmail.com</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JS — load order matters -->
+  
+  
+<script>
+/* ================================================
+   STARTIQ.AI — Blob Canvas Engine
+   Organic animated background shapes using Canvas
+================================================ */
+
+(function () {
+  'use strict';
+
+  class BlobCanvas {
+    constructor(canvasId, options = {}) {
+      this.canvas = document.getElementById(canvasId);
+      if (!this.canvas) return;
+
+      this.ctx     = this.canvas.getContext('2d');
+      this.opts    = Object.assign({
+        colors:  ['#ff2d6b', '#ff6b95', '#be185d'],
+        opacity: 0.16,
+        count:   3,
+        speed:   0.004,
+      }, options);
+
+      this.t     = 0;
+      this.blobs = [];
+
+      this.resize();
+      this.initBlobs();
+      this.animate();
+
+      window.addEventListener('resize', () => {
+        this.resize();
+        this.initBlobs();
+      });
+    }
+
+    resize() {
+      const parent = this.canvas.parentElement;
+      this.canvas.width  = parent.offsetWidth;
+      this.canvas.height = parent.offsetHeight;
+      this.w = this.canvas.width;
+      this.h = this.canvas.height;
+    }
+
+    initBlobs() {
+      const n = window.innerWidth < 768
+        ? Math.min(2, this.opts.count)
+        : this.opts.count;
+
+      this.blobs = Array.from({ length: n }, (_, i) => ({
+        x:    this.w * (0.2 + i * 0.35),
+        y:    this.h * (0.25 + (i % 2) * 0.45),
+        r:    Math.min(this.w, this.h) * (0.18 + Math.random() * 0.14),
+        ox:   Math.random() * 1000,
+        oy:   Math.random() * 1000,
+        speed: this.opts.speed + Math.random() * 0.0002,
+        color: this.opts.colors[i % this.opts.colors.length],
+        phase: i * (Math.PI * 2 / n),
+      }));
+    }
+
+    drawOrganic(ctx, cx, cy, r, phase) {
+      const pts = 8;
+      ctx.beginPath();
+      for (let i = 0; i <= pts; i++) {
+        const angle = (i / pts) * Math.PI * 2;
+        const noise = 0.72
+          + 0.28 * Math.sin(angle * 2.2 + phase + this.t * 0.38)
+               * Math.cos(angle * 1.7 + phase * 0.8 + this.t * 0.28);
+        const rr = r * noise;
+        const x  = cx + Math.cos(angle) * rr;
+        const y  = cy + Math.sin(angle) * rr;
+        i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+      }
+      ctx.closePath();
+    }
+
+    animate() {
+      if (!this.canvas) return;
+      this.t += 0.005;
+
+      const ctx = this.ctx;
+      ctx.clearRect(0, 0, this.w, this.h);
+
+      this.blobs.forEach(b => {
+        // Slow organic drift
+        const nx = Math.sin(b.ox * 1.3 + this.t * 0.6) * Math.cos(b.oy * 0.9 + this.t * 0.4);
+        const ny = Math.cos(b.oy * 1.2 + this.t * 0.5) * Math.sin(b.ox * 0.8 + this.t * 0.35);
+
+        b.x += nx * 0.5;
+        b.y += ny * 0.5;
+        b.x = ((b.x % this.w) + this.w) % this.w;
+        b.y = ((b.y % this.h) + this.h) % this.h;
+        b.ox += b.speed;
+        b.oy += b.speed * 0.7;
+
+        // Radial gradient
+        const grad = ctx.createRadialGradient(b.x, b.y, 0, b.x, b.y, b.r);
+        grad.addColorStop(0,    b.color + '44');
+        grad.addColorStop(0.45, b.color + '18');
+        grad.addColorStop(1,    'transparent');
+
+        ctx.save();
+        ctx.globalAlpha = this.opts.opacity;
+        this.drawOrganic(ctx, b.x, b.y, b.r, b.phase);
+        ctx.fillStyle = grad;
+        ctx.fill();
+        ctx.restore();
+      });
+
+      requestAnimationFrame(() => this.animate());
+    }
+  }
+
+  /* ── Init all blob canvases on page load ─────── */
+  window.addEventListener('load', () => {
+    const configs = [
+      { id: 'blob-hero',     opts: { colors: ['#ff2d6b','#ec4899','#db2777'], opacity: 0.20 } },
+      { id: 'blob-about',    opts: { colors: ['#ff2d6b','#be185d'],            opacity: 0.15 } },
+      { id: 'blob-problem',  opts: { colors: ['#ff2d6b','#9333ea'],            opacity: 0.13 } },
+      { id: 'blob-r1',       opts: { colors: ['#ff2d6b','#ec4899'],            opacity: 0.12 } },
+      { id: 'blob-r2',       opts: { colors: ['#db2777','#ff2d6b'],            opacity: 0.12 } },
+      { id: 'blob-r3',       opts: { colors: ['#ec4899','#9333ea'],            opacity: 0.11 } },
+      { id: 'blob-r4',       opts: { colors: ['#ff2d6b','#fb7185'],            opacity: 0.12 } },
+      { id: 'blob-r5',       opts: { colors: ['#db2777','#ec4899'],            opacity: 0.11 } },
+      { id: 'blob-r6',       opts: { colors: ['#9333ea','#ff2d6b'],            opacity: 0.13 } },
+      { id: 'blob-how',      opts: { colors: ['#ff2d6b','#be185d'],            opacity: 0.14 } },
+      { id: 'blob-impact',   opts: { colors: ['#ec4899','#ff2d6b'],            opacity: 0.15 } },
+      { id: 'blob-cta',      opts: { colors: ['#ff2d6b','#db2777','#9333ea'], opacity: 0.18 } },
+    ];
+
+    configs.forEach(({ id, opts }) => new BlobCanvas(id, opts));
+  });
+
+  // Expose globally if needed
+  window.BlobCanvas = BlobCanvas;
+
+})();
+
+/* ================================================
+   STARTIQ.AI — Main JavaScript
+   cursor · navbar · reveal · counters · tabs
+================================================ */
+
+(function () {
+  'use strict';
+
+  /* ── PAGE LOADER ─────────────────────────────── */
+  function initLoader() {
+    const loader = document.getElementById('page-loader');
+    if (!loader) return;
+    window.addEventListener('load', () => {
+      setTimeout(() => loader.classList.add('hidden'), 800);
+    });
+  }
+
+  /* ── CUSTOM CURSOR ───────────────────────────── */
+  function initCursor() {
+    const outer = document.getElementById('cursor-outer');
+    const inner = document.getElementById('cursor-inner');
+    if (!outer || !inner) return;
+
+    let mx = 0, my = 0, ox = 0, oy = 0;
+
+    document.addEventListener('mousemove', (e) => {
+      mx = e.clientX;
+      my = e.clientY;
+      inner.style.left = mx + 'px';
+      inner.style.top  = my + 'px';
+    });
+
+    // Smooth follow for outer ring
+    (function loop() {
+      ox += (mx - ox) * 0.1;
+      oy += (my - oy) * 0.1;
+      outer.style.left = ox + 'px';
+      outer.style.top  = oy + 'px';
+      requestAnimationFrame(loop);
+    })();
+
+    // Hover effect on interactive elements
+    const interactives = 'a, button, .feat-card, .insight-card, .stat-box, .role-tab, .how-step, .problem-cell, .impact-cell, .btn-rose, .btn-ghost, .nav-cta';
+    document.querySelectorAll(interactives).forEach(el => {
+      el.addEventListener('mouseenter', () => document.body.classList.add('hovering'));
+      el.addEventListener('mouseleave', () => document.body.classList.remove('hovering'));
+    });
+  }
+
+  /* ── NAVBAR ──────────────────────────────────── */
+  function initNavbar() {
+    const nav = document.getElementById('main-nav');
+    if (!nav) return;
+
+    // Sticky on scroll
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('sticky', window.scrollY > 60);
+      updateActiveLink();
+    }, { passive: true });
+
+    // Active link tracking
+    function updateActiveLink() {
+      const sections = document.querySelectorAll('section[id]');
+      const links    = document.querySelectorAll('.nav-links a');
+      let current = '';
+      sections.forEach(s => {
+        if (window.scrollY >= s.offsetTop - 110) current = s.id;
+      });
+      links.forEach(l => {
+        l.classList.toggle('active', l.getAttribute('href') === '#' + current);
+      });
+    }
+
+    // Mobile hamburger
+    const ham    = document.getElementById('nav-ham');
+    const mobile = document.getElementById('nav-mobile');
+    if (ham && mobile) {
+      ham.addEventListener('click', () => {
+        ham.classList.toggle('open');
+        mobile.classList.toggle('open');
+      });
+      // Close on link click
+      mobile.querySelectorAll('a').forEach(a => {
+        a.addEventListener('click', () => {
+          ham.classList.remove('open');
+          mobile.classList.remove('open');
+        });
+      });
+    }
+  }
+
+  /* ── SCROLL REVEAL ───────────────────────────── */
+  function initReveal() {
+    const els = document.querySelectorAll('.rv');
+    if (!els.length) return;
+
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) e.target.classList.add('in');
+      });
+    }, { threshold: 0.08 });
+
+    els.forEach(el => io.observe(el));
+  }
+
+  /* ── COUNTER ANIMATION ───────────────────────── */
+  function initCounters() {
+    const els = document.querySelectorAll('[data-count]');
+    if (!els.length) return;
+
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        const el     = e.target;
+        const target = +el.dataset.count;
+        const suffix = el.dataset.sfx || '';
+        let current  = 0;
+        const inc    = target / 60;
+        const timer  = setInterval(() => {
+          current = Math.min(current + inc, target);
+          el.textContent = Math.floor(current) + suffix;
+          if (current >= target) {
+            clearInterval(timer);
+            el.textContent = target + suffix;
+          }
+        }, 16);
+        io.unobserve(el);
+      });
+    }, { threshold: 0.5 });
+
+    els.forEach(c => io.observe(c));
+  }
+
+  /* ── ROLE TABS ───────────────────────────────── */
+  function initRoleTabs() {
+    const tabs = document.querySelectorAll('.role-tab');
+    if (!tabs.length) return;
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const targetId = tab.dataset.role;
+        if (!targetId) return;
+
+        // Update tabs
+        tabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+
+        // Update panels
+        document.querySelectorAll('.role-panel').forEach(p => p.classList.remove('active'));
+        const panel = document.getElementById(targetId);
+        if (panel) panel.classList.add('active');
+
+        // Scroll to platform section smoothly
+        const section = document.getElementById('platform');
+        if (section) {
+          section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        // Re-trigger reveal for newly visible cards
+        panel && panel.querySelectorAll('.rv').forEach(el => {
+          if (!el.classList.contains('in')) {
+            setTimeout(() => el.classList.add('in'), 50);
+          }
+        });
+      });
+    });
+  }
+
+  /* ── SMOOTH ANCHOR SCROLL ────────────────────── */
+  function initSmoothScroll() {
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const target = document.querySelector(a.getAttribute('href'));
+        if (!target) return;
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+  }
+
+  /* ── INIT ALL ────────────────────────────────── */
+  document.addEventListener('DOMContentLoaded', () => {
+    initLoader();
+    initCursor();
+    initNavbar();
+    initReveal();
+    initCounters();
+    initRoleTabs();
+    initSmoothScroll();
+  });
+
+})();
+
+
+</script>
+</body>
+</html>
